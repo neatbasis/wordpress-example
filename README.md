@@ -3,7 +3,7 @@
 ## Usage:
 
 ```
-# Clone this repo 
+# Clone this repo
 git clone git@github.com:neatbasis/wordpress-example.git
 
 # Change directory
@@ -43,3 +43,11 @@ Options:
 
 
 Open your browser at [http://localhost:8000/](http://localhost:8000/) to continue wordpress configuration
+
+
+```
+# Example, add a new theme to this project
+$ git submodule add git@github.com:tex0gen/bootstrap5-wordpress-theme.git themes/bootstrap5-wordpress-theme
+$ cd themes/bootstrap5-wordpress-theme
+$ npm install
+```
