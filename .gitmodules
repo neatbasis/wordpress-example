@@ -1,0 +1,6 @@
+[submodule "theme"]
+	path = theme
+	url = git@github.com:justintadlock/hybrid-base.git
+[submodule "themes/bootstrap5-wordpress-theme"]
+	path = themes/bootstrap5-wordpress-theme
+	url = git@github.com:tex0gen/bootstrap5-wordpress-theme.git
