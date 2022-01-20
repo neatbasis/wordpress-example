@@ -9,8 +9,12 @@ git clone git@github.com:neatbasis/wordpress-example.git
 # Change directory
 cd wordpress-example
 
-# Start
+# Start detached
 docker-compose up -d
+
+# Stop the stack
+docker-compose down
+
 
 ```
 
