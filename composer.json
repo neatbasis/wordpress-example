@@ -1,0 +1,13 @@
+{
+    "name": "neatbasis/wordpress-example",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Sebastian Mäki",
+            "email": "sebastian.maki@gmail.com"
+        }
+    ],
+    "require": {
+        "twbs/bootstrap": "5.1.3"
+    }
+}
