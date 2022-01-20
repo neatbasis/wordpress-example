@@ -13,3 +13,5 @@ cd wordpress-example
 docker-compose up -d
 
 ```
+
+Open your browser at [http://localhost:8000/](http://localhost:8000/) to continue wordpress configuration
