@@ -18,6 +18,9 @@
 # Clone this repo
 git clone git@github.com:neatbasis/wordpress-example.git
 
+# Init and fetch submodules
+git submodule update --init --recursive
+
 # Change directory
 cd wordpress-example
 
