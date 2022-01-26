@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite errors="0" failures="0" skipped="8" name="Providing a custom page object factory" tests="39" time="0.011757">
-    <testcase classname="Providing a custom page object factory" name="Custom page object factory" time="0.011044" assertions="8">
-    </testcase>
-</testsuite>

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite errors="0" failures="0" skipped="12" name="Injecting a page object directly into the context" tests="36" time="0.016762">
-    <testcase classname="Injecting a page object directly into the context" name="Injecting a page object via a constructor" time="0.010055" assertions="7">
-    </testcase>
-    <testcase classname="Injecting a page object directly into the context" name="Configuring the generated proxy location" time="0.005195" assertions="5">
-    </testcase>
-</testsuite>

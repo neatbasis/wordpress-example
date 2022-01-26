@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite errors="0" failures="0" skipped="8" name="Providing a custom class name resolver for the default page object factory" tests="38" time="0.011009">
-    <testcase classname="Providing a custom class name resolver for the default page object factory" name="Custom class name resolver" time="0.010239" assertions="8">
-    </testcase>
-</testsuite>

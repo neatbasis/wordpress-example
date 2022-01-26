@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite errors="0" failures="0" skipped="1" name="Widgets" tests="29" time="0.004783">
-    <testcase classname="Widgets" name="Viewing a widget" time="0.003861" assertions="3">
-    </testcase>
-</testsuite>
