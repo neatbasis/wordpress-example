@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite errors="0" failures="0" skipped="8" name="Managing users" tests="25" time="0.012388">
+    <testcase classname="Managing users" name="I can specify a user which already exists and the test should not fail" time="0.006480" assertions="5">
+    </testcase>
+    <testcase classname="Managing users" name="I can delete a user account" time="0.004559" assertions="3">
+    </testcase>
+</testsuite>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite errors="0" failures="0" skipped="5" name="Miscellanous/unsorted wp-admin tests." tests="11" time="0.006853">
+    <testcase classname="Miscellanous/unsorted wp-admin tests." name="I can navigate to the Add New Users screen in the WordPress dashboard." time="0.006075" assertions="5">
+    </testcase>
+</testsuite>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite errors="0" failures="0" skipped="37" name="Using page objects with a factory" tests="44" time="0.050583">
+    <testcase classname="Using page objects with a factory" name="Using a factory to create page objects" time="0.011114" assertions="9">
+    </testcase>
+    <testcase classname="Using page objects with a factory" name="Using a factory with FQCN to create page objects" time="0.012269" assertions="9">
+    </testcase>
+    <testcase classname="Using page objects with a factory" name="Using a factory to create elements with simplified selectors" time="0.008990" assertions="7">
+    </testcase>
+    <testcase classname="Using page objects with a factory" name="Using a factory to create inline elements with simplified selectors" time="0.007303" assertions="6">
+    </testcase>
+    <testcase classname="Using page objects with a factory" name="Configuring the page object factory" time="0.008302" assertions="6">
+    </testcase>
+</testsuite>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite errors="0" failures="0" skipped="2" name="Search" tests="34" time="0.003239">
+    <testcase classname="Search" name="Searching for lolcats" time="0.002453" assertions="2">
+    </testcase>
+</testsuite>

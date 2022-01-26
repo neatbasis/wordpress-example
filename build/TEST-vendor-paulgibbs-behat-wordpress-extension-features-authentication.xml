@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite errors="0" failures="0" skipped="14" name="User authentication" tests="10" time="0.022463">
+    <testcase classname="User authentication" name="I can log-in and out with javascript" time="0.004855" assertions="5">
+    </testcase>
+    <testcase classname="User authentication" name="I can log-in and out without javascript" time="0.005031" assertions="5">
+    </testcase>
+    <testcase classname="User authentication" name="I can log in as a newly-created user with an explicitly-set password." time="0.004768" assertions="4">
+    </testcase>
+    <testcase classname="User authentication" name="I can log in as a newly-created user with an auto-generated password." time="0.005639" assertions="4">
+    </testcase>
+</testsuite>

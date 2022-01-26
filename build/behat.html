@@ -1,0 +1,6028 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns ="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title>Behat Test Suite</title>
+    <style type="text/css">
+        body {
+            margin:0px;
+            padding:0px;
+            position:relative;
+            padding-top:75px;
+        }
+        #behat {
+            float:left;
+            font-family: Georgia, serif;
+            font-size:18px;
+            line-height:26px;
+            width:100%;
+        }
+        #behat .statistics {
+            float:left;
+            width:100%;
+            margin-bottom:15px;
+        }
+        #behat .statistics p {
+            text-align:right;
+            padding:5px 15px;
+            margin:0px;
+            border-right:10px solid #000;
+        }
+        #behat .statistics.failed p {
+            border-color:#C20000;
+        }
+        #behat .statistics.passed p {
+            border-color:#3D7700;
+        }
+        #behat .feature {
+            margin:15px;
+        }
+        #behat h2, #behat h3, #behat h4 {
+            margin:0px 0px 5px 0px;
+            padding:0px;
+            font-family:Georgia;
+        }
+        #behat h2 .title, #behat h3 .title, #behat h4 .title {
+            font-weight:normal;
+        }
+        #behat .path {
+            font-size:10px;
+            font-weight:normal;
+            font-family: 'Bitstream Vera Sans Mono', 'DejaVu Sans Mono', Monaco, Courier, monospace !important;
+            color:#999;
+            padding:0px 5px;
+            float:right;
+        }
+        #behat .path a:link,
+        #behat .path a:visited {
+            color:#999;
+        }
+        #behat .path a:hover,
+        #behat .path a:active {
+            background-color:#000;
+            color:#fff;
+        }
+        #behat h3 .path {
+            margin-right:4%;
+        }
+        #behat ul.tags {
+            font-size:14px;
+            font-weight:bold;
+            color:#246AC1;
+            list-style:none;
+            margin:0px;
+            padding:0px;
+        }
+        #behat ul.tags li {
+            display:inline;
+        }
+        #behat ul.tags li:after {
+            content:' ';
+        }
+        #behat ul.tags li:last-child:after {
+            content:'';
+        }
+        #behat .feature > p {
+            margin-top:0px;
+            margin-left:20px;
+        }
+        #behat .scenario {
+            margin-left:20px;
+            margin-bottom:20px;
+        }
+        #behat .scenario > ol,
+        #behat .scenario .examples > ol {
+            margin:0px;
+            list-style:none;
+            padding:0px;
+        }
+        #behat .scenario > ol {
+            margin-left:20px;
+        }
+        #behat .scenario > ol:after,
+        #behat .scenario .examples > ol:after {
+            content:'';
+            display:block;
+            clear:both;
+        }
+        #behat .scenario > ol li,
+        #behat .scenario .examples > ol li {
+            float:left;
+            width:95%;
+            padding-left:5px;
+            border-left:5px solid;
+            margin-bottom:4px;
+        }
+        #behat .scenario > ol li .argument,
+        #behat .scenario .examples > ol li .argument {
+            margin:10px 20px;
+            font-size:16px;
+            overflow:hidden;
+        }
+        #behat .scenario > ol li table.argument,
+        #behat .scenario .examples > ol li table.argument {
+            border:1px solid #d2d2d2;
+        }
+        #behat .scenario > ol li table.argument thead td,
+        #behat .scenario .examples > ol li table.argument thead td {
+            font-weight: bold;
+        }
+        #behat .scenario > ol li table.argument td,
+        #behat .scenario .examples > ol li table.argument td {
+            padding:5px 10px;
+            background:#f3f3f3;
+        }
+        #behat .scenario > ol li .keyword,
+        #behat .scenario .examples > ol li .keyword {
+            font-weight:bold;
+        }
+        #behat .scenario > ol li .path,
+        #behat .scenario .examples > ol li .path {
+            float:right;
+        }
+        #behat .scenario .examples {
+            margin-top:20px;
+            margin-left:40px;
+        }
+        #behat .scenario .examples h4 span {
+            font-weight:normal;
+            background:#f3f3f3;
+            color:#999;
+            padding:0 5px;
+            margin-left:10px;
+        }
+        #behat .scenario .examples table {
+            margin-left:20px;
+        }
+        #behat .scenario .examples table thead td {
+            font-weight:bold;
+            text-align:center;
+        }
+        #behat .scenario .examples table td {
+            padding:2px 10px;
+            font-size:16px;
+        }
+        #behat .scenario .examples table .failed.exception td {
+            border-left:5px solid #000;
+            border-color:#C20000 !important;
+            padding-left:0px;
+        }
+        pre {
+            font-family:monospace;
+        }
+        .snippet {
+            font-size:14px;
+            color:#000;
+            margin-left:20px;
+        }
+        .backtrace {
+            font-size:12px;
+            line-height:18px;
+            color:#000;
+            overflow:hidden;
+            margin-left:20px;
+            padding:15px;
+            border-left:2px solid #C20000;
+            background: #fff;
+            margin-right:15px;
+        }
+        #behat .passed {
+            background:#DBFFB4;
+            border-color:#65C400 !important;
+            color:#3D7700;
+        }
+        #behat .failed {
+            background:#FFFBD3;
+            border-color:#C20000 !important;
+            color:#C20000;
+        }
+        #behat .undefined, #behat .pending {
+            border-color:#FAF834 !important;
+            background:#FCFB98;
+            color:#000;
+        }
+        #behat .skipped {
+            background:lightCyan;
+            border-color:cyan !important;
+            color:#000;
+        }
+        #behat .summary {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width:100%;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            line-height: 18px;
+        }
+        #behat .summary .counters {
+            padding: 10px;
+            border-top: 0px;
+            border-bottom: 0px;
+            border-right: 0px;
+            border-left: 5px;
+            border-style: solid;
+            height: 52px;
+            overflow: hidden;
+        }
+        #behat .summary .switchers {
+            position: absolute;
+            right: 15px;
+            top: 25px;
+        }
+        #behat .summary .switcher {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        #behat .summary .switchers a {
+            margin-left: 10px;
+            color: #000;
+        }
+        #behat .summary .switchers a:hover {
+            text-decoration:none;
+        }
+        #behat .summary p {
+            margin:0px;
+        }
+        #behat .jq-toggle > .scenario,
+        #behat .jq-toggle > ol,
+        #behat .jq-toggle > .examples {
+            display:none;
+        }
+        #behat .jq-toggle-opened > .scenario,
+        #behat .jq-toggle-opened > ol,
+        #behat .jq-toggle-opened > .examples {
+            display:block;
+        }
+        #behat .jq-toggle > h2,
+        #behat .jq-toggle > h3 {
+            cursor:pointer;
+        }
+        #behat .jq-toggle > h2:after,
+        #behat .jq-toggle > h3:after {
+            content:' |+';
+            font-weight:bold;
+        }
+        #behat .jq-toggle-opened > h2:after,
+        #behat .jq-toggle-opened > h3:after {
+            content:' |-';
+            font-weight:bold;
+        }
+    </style>
+
+    <style type="text/css" media="print">
+        body {
+            padding:0px;
+        }
+
+        #behat {
+            font-size:11px;
+        }
+
+        #behat .jq-toggle > .scenario,
+        #behat .jq-toggle > .scenario .examples,
+        #behat .jq-toggle > ol {
+            display:block;
+        }
+
+        #behat .summary {
+            position:relative;
+        }
+
+        #behat .summary .counters {
+            border:none;
+        }
+
+        #behat .summary .switchers {
+            display:none;
+        }
+
+        #behat .step .path {
+            display:none;
+        }
+
+        #behat .jq-toggle > h2:after,
+        #behat .jq-toggle > h3:after {
+            content:'';
+            font-weight:bold;
+        }
+
+        #behat .jq-toggle-opened > h2:after,
+        #behat .jq-toggle-opened > h3:after {
+            content:'';
+            font-weight:bold;
+        }
+
+        #behat .scenario > ol li,
+        #behat .scenario .examples > ol li {
+            border-left:none;
+        }
+    </style>
+</head>
+<body>
+    <div id="behat">
+        
+<div class="feature">
+<h2>
+<span class="keyword">Feature: </span>
+<span class="title"></span>
+</h2>
+
+<div class="scenario">
+<h3>
+<span class="keyword">Scenario: </span>
+<span class="path">/var/work/build/features/test.feature:2</span>
+</h3>
+<ol>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I am an anonymous user</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Given /^I am an anonymous user$/
+     */
+    public function iAmAnAnonymousUser()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">number step with 23</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Given /^number step with (\d+)$/
+     */
+    public function numberStepWith($arg1)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+</ol>
+</div>
+</div>
+<div class="feature">
+<h2>
+<span class="keyword">Feature: </span>
+<span class="title"></span>
+</h2>
+
+<div class="scenario">
+<h3>
+<span class="keyword">Scenario: </span>
+<span class="path">/var/work/features/test.feature:2</span>
+</h3>
+<ol>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I am an anonymous user</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Given /^I am an anonymous user$/
+     */
+    public function iAmAnAnonymousUser()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">number step with 23</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Given /^number step with (\d+)$/
+     */
+    public function numberStepWith($arg1)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+</ol>
+</div>
+</div>
+<div class="feature">
+<h2>
+<span class="keyword">Feature: </span>
+<span class="title">Search</span>
+</h2>
+<p>
+In order to see a word definition<br />
+As a website user<br />
+I need to be able to search for a word<br />
+</p>
+
+<div class="scenario">
+<h3>
+<span class="keyword">Scenario: </span>
+<span class="title">Searching for a page that does exist</span>
+<span class="path">/var/work/vendor/behat/mink-extension/features/search.feature:6</span>
+</h3>
+<ol>
+<li class="failed">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I am on "<strong class="failed_param">/wiki/Main_Page</strong>"</span>
+<span class="path">Behat\MinkExtension\Context\MinkContext::visit()</span>
+</div>
+<pre class="backtrace">[curl] 7: Failed to connect to localhost port 80: Connection refused [url] http://localhost/wiki/Main_Page</pre>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I fill in "<strong class="skipped_param">search</strong>" with "<strong class="skipped_param">Behavior Driven Development</strong>"</span>
+<span class="path">Behat\MinkExtension\Context\MinkContext::fillField()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I press "<strong class="skipped_param">searchButton</strong>"</span>
+<span class="path">Behat\MinkExtension\Context\MinkContext::pressButton()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">agile software development</strong>"</span>
+<span class="path">Behat\MinkExtension\Context\MinkContext::assertPageContainsText()</span>
+</div>
+</li>
+</ol>
+</div>
+<div class="scenario">
+<h3>
+<span class="keyword">Scenario: </span>
+<span class="title">Searching for a page that does NOT exist</span>
+<span class="path">/var/work/vendor/behat/mink-extension/features/search.feature:12</span>
+</h3>
+<ol>
+<li class="failed">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I am on "<strong class="failed_param">/wiki/Main_Page</strong>"</span>
+<span class="path">Behat\MinkExtension\Context\MinkContext::visit()</span>
+</div>
+<pre class="backtrace">[curl] 7: Failed to connect to localhost port 80: Connection refused [url] http://localhost/wiki/Main_Page</pre>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I fill in "<strong class="skipped_param">search</strong>" with "<strong class="skipped_param">Glory Driven Development</strong>"</span>
+<span class="path">Behat\MinkExtension\Context\MinkContext::fillField()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I press "<strong class="skipped_param">searchButton</strong>"</span>
+<span class="path">Behat\MinkExtension\Context\MinkContext::pressButton()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">Search results</strong>"</span>
+<span class="path">Behat\MinkExtension\Context\MinkContext::assertPageContainsText()</span>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="feature">
+<h2>
+<span class="keyword">Feature: </span>
+<span class="title">Search</span>
+</h2>
+<p>
+In order to see a word definition<br />
+As a website user<br />
+I need to be able to search for a word<br />
+</p>
+
+<div class="scenario">
+<h3>
+<span class="keyword">Scenario: </span>
+<span class="title">Searching for a page that does exist</span>
+<span class="path">/var/work/vendor/friends-of-behat/mink-extension/features/search.feature:6</span>
+</h3>
+<ol>
+<li class="failed">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I am on "<strong class="failed_param">/wiki/Main_Page</strong>"</span>
+<span class="path">Behat\MinkExtension\Context\MinkContext::visit()</span>
+</div>
+<pre class="backtrace">[curl] 7: Failed to connect to localhost port 80: Connection refused [url] http://localhost/wiki/Main_Page</pre>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I fill in "<strong class="skipped_param">search</strong>" with "<strong class="skipped_param">Behavior Driven Development</strong>"</span>
+<span class="path">Behat\MinkExtension\Context\MinkContext::fillField()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I press "<strong class="skipped_param">searchButton</strong>"</span>
+<span class="path">Behat\MinkExtension\Context\MinkContext::pressButton()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">agile software development</strong>"</span>
+<span class="path">Behat\MinkExtension\Context\MinkContext::assertPageContainsText()</span>
+</div>
+</li>
+</ol>
+</div>
+<div class="scenario">
+<h3>
+<span class="keyword">Scenario: </span>
+<span class="title">Searching for a page that does NOT exist</span>
+<span class="path">/var/work/vendor/friends-of-behat/mink-extension/features/search.feature:12</span>
+</h3>
+<ol>
+<li class="failed">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I am on "<strong class="failed_param">/wiki/Main_Page</strong>"</span>
+<span class="path">Behat\MinkExtension\Context\MinkContext::visit()</span>
+</div>
+<pre class="backtrace">[curl] 7: Failed to connect to localhost port 80: Connection refused [url] http://localhost/wiki/Main_Page</pre>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I fill in "<strong class="skipped_param">search</strong>" with "<strong class="skipped_param">Glory Driven Development</strong>"</span>
+<span class="path">Behat\MinkExtension\Context\MinkContext::fillField()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I press "<strong class="skipped_param">searchButton</strong>"</span>
+<span class="path">Behat\MinkExtension\Context\MinkContext::pressButton()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">Search results</strong>"</span>
+<span class="path">Behat\MinkExtension\Context\MinkContext::assertPageContainsText()</span>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="feature">
+<h2>
+<span class="keyword">Feature: </span>
+<span class="title">User authentication</span>
+</h2>
+<p>
+In order to have confidence that WordHat is reliable for developers<br />
+As a WordHat maintainer<br />
+I want to test user authentication<br />
+</p>
+
+<div class="scenario">
+<ul class="tags">
+<li>@javascript</li>
+</ul>
+<h3>
+<span class="keyword">Scenario: </span>
+<span class="title">I can log-in and out with javascript</span>
+<span class="path">/var/work/vendor/paulgibbs/behat-wordpress-extension/features/authentication.feature:7</span>
+</h3>
+<ol>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I am logged in as an administrator</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Given /^I am logged in as an administrator$/
+     */
+    public function iAmLoggedInAsAnAdministrator()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I am on the dashboard</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Given /^I am on the dashboard$/
+     */
+    public function iAmOnTheDashboard()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">Howdy</strong>"</span>
+<span class="path">Behat\MinkExtension\Context\MinkContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I log out</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @When /^I log out$/
+     */
+    public function iLogOut()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should not see "<strong class="skipped_param">Howdy</strong>"</span>
+<span class="path">Behat\MinkExtension\Context\MinkContext::assertPageNotContainsText()</span>
+</div>
+</li>
+</ol>
+</div>
+<div class="scenario">
+<h3>
+<span class="keyword">Scenario: </span>
+<span class="title">I can log-in and out without javascript</span>
+<span class="path">/var/work/vendor/paulgibbs/behat-wordpress-extension/features/authentication.feature:14</span>
+</h3>
+<ol>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I am logged in as an administrator</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Given /^I am logged in as an administrator$/
+     */
+    public function iAmLoggedInAsAnAdministrator()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I am on the dashboard</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Given /^I am on the dashboard$/
+     */
+    public function iAmOnTheDashboard()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">Howdy</strong>"</span>
+<span class="path">Behat\MinkExtension\Context\MinkContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I log out</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @When /^I log out$/
+     */
+    public function iLogOut()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should not see "<strong class="skipped_param">Howdy</strong>"</span>
+<span class="path">Behat\MinkExtension\Context\MinkContext::assertPageNotContainsText()</span>
+</div>
+</li>
+</ol>
+</div>
+<div class="scenario">
+<ul class="tags">
+<li>@db</li>
+</ul>
+<h3>
+<span class="keyword">Scenario: </span>
+<span class="title">I can log in as a newly-created user with an explicitly-set password.</span>
+<span class="path">/var/work/vendor/paulgibbs/behat-wordpress-extension/features/authentication.feature:22</span>
+</h3>
+<ol>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">there are users:</span>
+</div>
+<table class="argument">
+<thead>
+<tr class="row">
+<td>user_login</td>
+<td>user_pass</td>
+<td>user_email</td>
+<td>role</td>
+</tr>
+</thead>
+<tbody>
+<tr class="row">
+<td>test</td>
+<td>test</td>
+<td>test@example.com</td>
+<td>author</td>
+</tr>
+</tbody>
+</table>
+<div class="snippet"><pre>    /**
+     * @Given /^there are users:$/
+     */
+    public function thereAreUsers(TableNode $table)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I am logged in as test</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Given /^I am logged in as test$/
+     */
+    public function iAmLoggedInAsTest()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I go to the dashboard</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @When /^I go to the dashboard$/
+     */
+    public function iGoToTheDashboard()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">the toolbar should show I am authenticated as test</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Then /^the toolbar should show I am authenticated as test$/
+     */
+    public function theToolbarShouldShowIAmAuthenticatedAsTest()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+</ol>
+</div>
+<div class="scenario">
+<ul class="tags">
+<li>@db</li>
+</ul>
+<h3>
+<span class="keyword">Scenario: </span>
+<span class="title">I can log in as a newly-created user with an auto-generated password.</span>
+<span class="path">/var/work/vendor/paulgibbs/behat-wordpress-extension/features/authentication.feature:31</span>
+</h3>
+<ol>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">there are users:</span>
+</div>
+<table class="argument">
+<thead>
+<tr class="row">
+<td>user_login</td>
+<td>user_email</td>
+<td>role</td>
+</tr>
+</thead>
+<tbody>
+<tr class="row">
+<td>test</td>
+<td>test@example.com</td>
+<td>author</td>
+</tr>
+</tbody>
+</table>
+<div class="snippet"><pre>    /**
+     * @Given /^there are users:$/
+     */
+    public function thereAreUsers(TableNode $table)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I am logged in as test</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Given /^I am logged in as test$/
+     */
+    public function iAmLoggedInAsTest()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I go to the dashboard</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @When /^I go to the dashboard$/
+     */
+    public function iGoToTheDashboard()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">the toolbar should show I am authenticated as test</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Then /^the toolbar should show I am authenticated as test$/
+     */
+    public function theToolbarShouldShowIAmAuthenticatedAsTest()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+</ol>
+</div>
+</div>
+<div class="feature">
+<h2>
+<span class="keyword">Feature: </span>
+<span class="title">Miscellanous/unsorted wp-admin tests.</span>
+</h2>
+<p>
+In order to have confidence that WordHat is reliable for developers<br />
+As a WordHat maintainer<br />
+I want to test interacting with the dashboard<br />
+</p>
+
+<div class="scenario">
+<h3>
+<span class="keyword">Scenario: </span>
+<span class="title">I can navigate to the Add New Users screen in the WordPress dashboard.</span>
+<span class="path">/var/work/vendor/paulgibbs/behat-wordpress-extension/features/dashboard.feature:6</span>
+</h3>
+<ol>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I am logged in as an administrator</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Given /^I am logged in as an administrator$/
+     */
+    public function iAmLoggedInAsAnAdministrator()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I am on the dashboard</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Given /^I am on the dashboard$/
+     */
+    public function iAmOnTheDashboard()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I go to the "Users" menu</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Given /^I go to the &quot;([^&quot;]*)&quot; menu$/
+     */
+    public function iGoToTheMenu($arg1)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I click on the "Add New" link in the header</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @When /^I click on the &quot;([^&quot;]*)&quot; link in the header$/
+     */
+    public function iClickOnTheLinkInTheHeader($arg1)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should be on the "Add New User" screen</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Then /^I should be on the &quot;([^&quot;]*)&quot; screen$/
+     */
+    public function iShouldBeOnTheScreen($arg1)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+</ol>
+</div>
+</div>
+<div class="feature">
+<ul class="tags">
+<li>@db</li>
+</ul>
+<h2>
+<span class="keyword">Feature: </span>
+<span class="title">You can write in visual and text mode</span>
+</h2>
+<p>
+In order to have confidence that WordHat is reliable for developers<br />
+As a WordHat maintainer<br />
+I want to test interacting with the content editor<br />
+</p>
+
+<div class="scenario background">
+<h3>
+<span class="keyword">Background: </span>
+<span class="path">/var/work/vendor/paulgibbs/behat-wordpress-extension/features/editing-content.feature:7</span>
+</h3>
+<ol>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I am logged in as an administrator</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Given /^I am logged in as an administrator$/
+     */
+    public function iAmLoggedInAsAnAdministrator()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">there are posts:</span>
+</div>
+<table class="argument">
+<thead>
+<tr class="row">
+<td>post_title</td>
+<td>post_content</td>
+<td>post_status</td>
+<td>post_author</td>
+</tr>
+</thead>
+<tbody>
+<tr class="row">
+<td>Just my article</td>
+<td>The content of my article</td>
+<td>publish</td>
+<td>admin</td>
+</tr>
+</tbody>
+</table>
+<div class="snippet"><pre>    /**
+     * @Given /^there are posts:$/
+     */
+    public function thereArePosts(TableNode $table)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I am on the edit post screen for "Just my article"</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Given /^I am on the edit post screen for &quot;([^&quot;]*)&quot;$/
+     */
+    public function iAmOnTheEditPostScreenFor($arg1)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+</ol>
+</div>
+<div class="scenario">
+<ul class="tags">
+<li>@javascript</li>
+</ul>
+<h3>
+<span class="keyword">Scenario: </span>
+<span class="title">I can update a post using the text view</span>
+<span class="path">/var/work/vendor/paulgibbs/behat-wordpress-extension/features/editing-content.feature:15</span>
+</h3>
+<ol>
+<li class="undefined">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I change the title to "Article written in text mode"</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @When /^I change the title to &quot;([^&quot;]*)&quot;$/
+     */
+    public function iChangeTheTitleTo($arg1)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I switch to the post content editor's Text mode</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Given /^I switch to the post content editor\'s Text mode$/
+     */
+    public function iSwitchToThePostContentEditorSTextMode()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">the post content editor is in Text mode</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Then /^the post content editor is in Text mode$/
+     */
+    public function thePostContentEditorIsInTextMode()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I enter the following content into the post content editor:</span>
+</div>
+<pre class="argument">&lt;strong&gt;HTML&lt;/strong&gt; tags should be interpreted, and not displayed in text mode.</pre>
+<div class="snippet"><pre>    /**
+     * @When /^I enter the following content into the post content editor:$/
+     */
+    public function iEnterTheFollowingContentIntoThePostContentEditor(PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I publish the changes</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Given /^I publish the changes$/
+     */
+    public function iPublishTheChanges()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see a status message that says "Post updated"</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Then /^I should see a status message that says &quot;([^&quot;]*)&quot;$/
+     */
+    public function iShouldSeeAStatusMessageThatSays($arg1)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I follow "<strong class="skipped_param">View Post</strong>"</span>
+<span class="path">Behat\MinkExtension\Context\MinkContext::clickLink()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">Article written in text mode</strong>"</span>
+<span class="path">Behat\MinkExtension\Context\MinkContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see "<strong class="skipped_param">HTML tags should be interpreted, and not displayed in text mode.</strong>"</span>
+<span class="path">Behat\MinkExtension\Context\MinkContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should not see "<strong class="skipped_param">&lt;strong&gt;</strong>HTML<strong class="skipped_param">&lt;/strong&gt;</strong>"</span>
+<span class="path">Behat\MinkExtension\Context\MinkContext::assertPageNotContainsText()</span>
+</div>
+</li>
+</ol>
+</div>
+<div class="scenario">
+<ul class="tags">
+<li>@javascript</li>
+</ul>
+<h3>
+<span class="keyword">Scenario: </span>
+<span class="title">I can update a post using the visual view</span>
+<span class="path">/var/work/vendor/paulgibbs/behat-wordpress-extension/features/editing-content.feature:33</span>
+</h3>
+<ol>
+<li class="undefined">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I change the title to "Article written in visual mode"</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @When /^I change the title to &quot;([^&quot;]*)&quot;$/
+     */
+    public function iChangeTheTitleTo($arg1)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I switch to the post content editor's Visual mode</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Given /^I switch to the post content editor\'s Visual mode$/
+     */
+    public function iSwitchToThePostContentEditorSVisualMode()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">the post content editor is in Visual mode</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Then /^the post content editor is in Visual mode$/
+     */
+    public function thePostContentEditorIsInVisualMode()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I enter the following content into the post content editor:</span>
+</div>
+<pre class="argument">&lt;strong&gt;HTML&lt;/strong&gt; tags should be displayed, and not parsed in visual mode.</pre>
+<div class="snippet"><pre>    /**
+     * @When /^I enter the following content into the post content editor:$/
+     */
+    public function iEnterTheFollowingContentIntoThePostContentEditor(PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I publish the changes</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Given /^I publish the changes$/
+     */
+    public function iPublishTheChanges()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see a status message that says "Post updated"</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Then /^I should see a status message that says &quot;([^&quot;]*)&quot;$/
+     */
+    public function iShouldSeeAStatusMessageThatSays($arg1)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I follow "<strong class="skipped_param">View Post</strong>"</span>
+<span class="path">Behat\MinkExtension\Context\MinkContext::clickLink()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">Article written in visual mode</strong>"</span>
+<span class="path">Behat\MinkExtension\Context\MinkContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see "<strong class="skipped_param">&lt;strong&gt;</strong>HTML<strong class="skipped_param">&lt;/strong&gt;</strong> tags should be displayed, and not parsed in visual mode."</span>
+<span class="path">Behat\MinkExtension\Context\MinkContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should not see "<strong class="skipped_param">HTML tags</strong>"</span>
+<span class="path">Behat\MinkExtension\Context\MinkContext::assertPageNotContainsText()</span>
+</div>
+</li>
+</ol>
+</div>
+<div class="scenario">
+<h3>
+<span class="keyword">Scenario: </span>
+<span class="title">I can access the content editing screen</span>
+<span class="path">/var/work/vendor/paulgibbs/behat-wordpress-extension/features/editing-content.feature:50</span>
+</h3>
+<ol>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should be on the edit post screen for "Just my article"</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Then /^I should be on the edit post screen for &quot;([^&quot;]*)&quot;$/
+     */
+    public function iShouldBeOnTheEditPostScreenFor($arg1)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+</ol>
+</div>
+<div class="scenario">
+<h3>
+<span class="keyword">Scenario: </span>
+<span class="title">I can access the content editing screen</span>
+<span class="path">/var/work/vendor/paulgibbs/behat-wordpress-extension/features/editing-content.feature:53</span>
+</h3>
+<ol>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see the "Publish" metabox</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Then /^I should see the &quot;([^&quot;]*)&quot; metabox$/
+     */
+    public function iShouldSeeTheMetabox($arg1)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should not see the "fake" metabox</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Given /^I should not see the &quot;([^&quot;]*)&quot; metabox$/
+     */
+    public function iShouldNotSeeTheMetabox($arg1)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+</ol>
+</div>
+</div>
+<div class="feature">
+<h2>
+<span class="keyword">Feature: </span>
+<span class="title">Navigation around types of WordPress front-end screen.</span>
+</h2>
+<p>
+In order to have confidence that WordHat is reliable for developers<br />
+As a WordHat maintainer<br />
+I want to test navigating around a website<br />
+</p>
+
+<div class="scenario">
+<ul class="tags">
+<li>@db</li>
+</ul>
+<h3>
+<span class="keyword">Scenario: </span>
+<span class="title">Access author archive</span>
+<span class="path">/var/work/vendor/paulgibbs/behat-wordpress-extension/features/navigation.feature:7</span>
+</h3>
+<ol>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">there are users:</span>
+</div>
+<table class="argument">
+<thead>
+<tr class="row">
+<td>user_login</td>
+<td>user_pass</td>
+<td>user_email</td>
+<td>role</td>
+</tr>
+</thead>
+<tbody>
+<tr class="row">
+<td>test</td>
+<td>test</td>
+<td>test@example.com</td>
+<td>author</td>
+</tr>
+</tbody>
+</table>
+<div class="snippet"><pre>    /**
+     * @Given /^there are users:$/
+     */
+    public function thereAreUsers(TableNode $table)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">there are posts:</span>
+</div>
+<table class="argument">
+<thead>
+<tr class="row">
+<td>post_title</td>
+<td>post_content</td>
+<td>post_status</td>
+<td>post_author</td>
+</tr>
+</thead>
+<tbody>
+<tr class="row">
+<td>Admin article</td>
+<td>The content of my article</td>
+<td>publish</td>
+<td>admin</td>
+</tr>
+<tr class="row">
+<td>Testing article</td>
+<td>The content of my article</td>
+<td>publish</td>
+<td>test</td>
+</tr>
+</tbody>
+</table>
+<div class="snippet"><pre>    /**
+     * @Given /^there are posts:$/
+     */
+    public function thereArePosts(TableNode $table)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I am viewing posts published by admin</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @When /^I am viewing posts published by admin$/
+     */
+    public function iAmViewingPostsPublishedByAdmin()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">Admin article</strong>"</span>
+<span class="path">Behat\MinkExtension\Context\MinkContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should not see "<strong class="skipped_param">Testing article</strong>"</span>
+<span class="path">Behat\MinkExtension\Context\MinkContext::assertPageNotContainsText()</span>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="feature">
+<ul class="tags">
+<li>@db</li>
+</ul>
+<h2>
+<span class="keyword">Feature: </span>
+<span class="title">Managing plugins</span>
+</h2>
+<p>
+In order to have confidence that WordHat is reliable for developers<br />
+As a WordHat maintainer<br />
+I want to test managing plugins<br />
+</p>
+
+<div class="scenario background">
+<h3>
+<span class="keyword">Background: </span>
+<span class="path">/var/work/vendor/paulgibbs/behat-wordpress-extension/features/plugin.feature:7</span>
+</h3>
+<ol>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I am logged in as an administrator</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Given /^I am logged in as an administrator$/
+     */
+    public function iAmLoggedInAsAnAdministrator()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+</ol>
+</div>
+<div class="scenario">
+<h3>
+<span class="keyword">Scenario: </span>
+<span class="title">Activate a plugin</span>
+<span class="path">/var/work/vendor/paulgibbs/behat-wordpress-extension/features/plugin.feature:10</span>
+</h3>
+<ol>
+<li class="undefined">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I activate the "hello" plugin</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @When /^I activate the &quot;([^&quot;]*)&quot; plugin$/
+     */
+    public function iActivateThePlugin($arg1)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I am on the dashboard</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Given /^I am on the dashboard$/
+     */
+    public function iAmOnTheDashboard()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see a "<strong class="skipped_param">#dolly</strong>" element</span>
+<span class="path">Behat\MinkExtension\Context\MinkContext::assertElementOnPage()</span>
+</div>
+</li>
+</ol>
+</div>
+<div class="scenario">
+<h3>
+<span class="keyword">Scenario: </span>
+<span class="title">Deactivate a plugin</span>
+<span class="path">/var/work/vendor/paulgibbs/behat-wordpress-extension/features/plugin.feature:15</span>
+</h3>
+<ol>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">the "hello" plugin is active</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Given /^the &quot;([^&quot;]*)&quot; plugin is active$/
+     */
+    public function thePluginIsActive($arg1)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I deactivate the "hello" plugin</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @When /^I deactivate the &quot;([^&quot;]*)&quot; plugin$/
+     */
+    public function iDeactivateThePlugin($arg1)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I am on the dashboard</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Given /^I am on the dashboard$/
+     */
+    public function iAmOnTheDashboard()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should not see a "<strong class="skipped_param">#dolly</strong>" element</span>
+<span class="path">Behat\MinkExtension\Context\MinkContext::assertElementNotOnPage()</span>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="feature">
+<h2>
+<span class="keyword">Feature: </span>
+<span class="title">Managing themes</span>
+</h2>
+<p>
+In order to have confidence that WordHat is reliable for developers<br />
+As a WordHat maintainer<br />
+I want to test managing themes<br />
+</p>
+
+<div class="scenario background">
+<h3>
+<span class="keyword">Background: </span>
+<span class="path">/var/work/vendor/paulgibbs/behat-wordpress-extension/features/theme.feature:6</span>
+</h3>
+<ol>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I am logged in as an administrator</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Given /^I am logged in as an administrator$/
+     */
+    public function iAmLoggedInAsAnAdministrator()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+</ol>
+</div>
+<div class="scenario">
+<ul class="tags">
+<li>@db</li>
+</ul>
+<h3>
+<span class="keyword">Scenario: </span>
+<span class="title">Activate a theme</span>
+<span class="path">/var/work/vendor/paulgibbs/behat-wordpress-extension/features/theme.feature:10</span>
+</h3>
+<ol>
+<li class="undefined">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I switch the theme to "twentysixteen"</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @When /^I switch the theme to &quot;([^&quot;]*)&quot;$/
+     */
+    public function iSwitchTheThemeTo($arg1)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I am on the dashboard</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Given /^I am on the dashboard$/
+     */
+    public function iAmOnTheDashboard()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">Twenty Sixteen</strong>" in the "<strong class="skipped_param">#wp-version a</strong>" element</span>
+<span class="path">Behat\MinkExtension\Context\MinkContext::assertElementContainsText()</span>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="feature">
+<ul class="tags">
+<li>@javascript</li>
+</ul>
+<h2>
+<span class="keyword">Feature: </span>
+<span class="title">Toolbar</span>
+</h2>
+<p>
+In order to have confidence that WordHat is reliable for developers<br />
+As a WordHat maintainer<br />
+I want to test interacting with the toolbar<br />
+</p>
+
+<div class="scenario background">
+<h3>
+<span class="keyword">Background: </span>
+<span class="path">/var/work/vendor/paulgibbs/behat-wordpress-extension/features/toolbar.feature:7</span>
+</h3>
+<ol>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I am logged in as an administrator</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Given /^I am logged in as an administrator$/
+     */
+    public function iAmLoggedInAsAnAdministrator()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I am on the homepage</span>
+<span class="path">Behat\MinkExtension\Context\MinkContext::iAmOnHomepage()</span>
+</div>
+</li>
+</ol>
+</div>
+<div class="scenario">
+<h3>
+<span class="keyword">Scenario: </span>
+<span class="title">I can go to the support forums</span>
+<span class="path">/var/work/vendor/paulgibbs/behat-wordpress-extension/features/toolbar.feature:11</span>
+</h3>
+<ol>
+<li class="undefined">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I follow the toolbar link "WordPress > Support Forums"</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @When /^I follow the toolbar link &quot;([^&quot;]*)&quot;$/
+     */
+    public function iFollowTheToolbarLink($arg1)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should be on "<strong class="skipped_param">https://wordpress.org/support/</strong>"</span>
+<span class="path">Behat\MinkExtension\Context\MinkContext::assertPageAddress()</span>
+</div>
+</li>
+</ol>
+</div>
+<div class="scenario">
+<h3>
+<span class="keyword">Scenario: </span>
+<span class="title">I can add a new page</span>
+<span class="path">/var/work/vendor/paulgibbs/behat-wordpress-extension/features/toolbar.feature:15</span>
+</h3>
+<ol>
+<li class="undefined">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I follow the toolbar link "New > Page"</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @When /^I follow the toolbar link &quot;([^&quot;]*)&quot;$/
+     */
+    public function iFollowTheToolbarLink($arg1)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should be on the "Add New Page" screen</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Then /^I should be on the &quot;([^&quot;]*)&quot; screen$/
+     */
+    public function iShouldBeOnTheScreen($arg1)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+</ol>
+</div>
+<div class="scenario">
+<ul class="tags">
+<li>@db</li>
+</ul>
+<h3>
+<span class="keyword">Scenario: </span>
+<span class="title">I can search using the toolbar</span>
+<span class="path">/var/work/vendor/paulgibbs/behat-wordpress-extension/features/toolbar.feature:20</span>
+</h3>
+<ol>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">there are posts:</span>
+</div>
+<table class="argument">
+<thead>
+<tr class="row">
+<td>post_type</td>
+<td>post_title</td>
+<td>post_content</td>
+<td>post_status</td>
+</tr>
+</thead>
+<tbody>
+<tr class="row">
+<td>page</td>
+<td>Test Post</td>
+<td>Hello World</td>
+<td>publish</td>
+</tr>
+</tbody>
+</table>
+<div class="snippet"><pre>    /**
+     * @Given /^there are posts:$/
+     */
+    public function thereArePosts(TableNode $table)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I search for "Hello World" in the toolbar</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @When /^I search for &quot;([^&quot;]*)&quot; in the toolbar$/
+     */
+    public function iSearchForInTheToolbar($arg1)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">Search results</strong>"</span>
+<span class="path">Behat\MinkExtension\Context\MinkContext::assertPageContainsText()</span>
+</div>
+</li>
+</ol>
+</div>
+<div class="scenario">
+<h3>
+<span class="keyword">Scenario: </span>
+<span class="title">I can search for text within the toolbar</span>
+<span class="path">/var/work/vendor/paulgibbs/behat-wordpress-extension/features/toolbar.feature:27</span>
+</h3>
+<ol>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I am logged in as an administrator</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Given /^I am logged in as an administrator$/
+     */
+    public function iAmLoggedInAsAnAdministrator()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I am on the homepage</span>
+<span class="path">Behat\MinkExtension\Context\MinkContext::iAmOnHomepage()</span>
+</div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "Howdy, admin" in the Toolbar</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Then /^I should see &quot;([^&quot;]*)&quot; in the Toolbar$/
+     */
+    public function iShouldSeeInTheToolbar($arg1)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+</ol>
+</div>
+</div>
+<div class="feature">
+<ul class="tags">
+<li>@db</li>
+</ul>
+<h2>
+<span class="keyword">Feature: </span>
+<span class="title">Managing users</span>
+</h2>
+<p>
+In order to have confidence that WordHat is reliable for developers<br />
+As a WordHat maintainer<br />
+I want to test managing users<br />
+</p>
+
+<div class="scenario">
+<h3>
+<span class="keyword">Scenario: </span>
+<span class="title">I can specify a user which already exists and the test should not fail</span>
+<span class="path">/var/work/vendor/paulgibbs/behat-wordpress-extension/features/user-admin.feature:7</span>
+</h3>
+<ol>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">there are users:</span>
+</div>
+<table class="argument">
+<thead>
+<tr class="row">
+<td>user_login</td>
+<td>user_pass</td>
+<td>user_email</td>
+<td>role</td>
+</tr>
+</thead>
+<tbody>
+<tr class="row">
+<td>test</td>
+<td>test</td>
+<td>test@example.com</td>
+<td>author</td>
+</tr>
+</tbody>
+</table>
+<div class="snippet"><pre>    /**
+     * @Given /^there are users:$/
+     */
+    public function thereAreUsers(TableNode $table)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">there are users:</span>
+</div>
+<table class="argument">
+<thead>
+<tr class="row">
+<td>user_login</td>
+<td>user_pass</td>
+<td>user_email</td>
+<td>role</td>
+</tr>
+</thead>
+<tbody>
+<tr class="row">
+<td>test</td>
+<td>test</td>
+<td>test@example.com</td>
+<td>author</td>
+</tr>
+</tbody>
+</table>
+<div class="snippet"><pre>    /**
+     * @Given /^there are users:$/
+     */
+    public function thereAreUsers(TableNode $table)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I am logged in as test</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Given /^I am logged in as test$/
+     */
+    public function iAmLoggedInAsTest()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I go to the dashboard</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @When /^I go to the dashboard$/
+     */
+    public function iGoToTheDashboard()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">the toolbar should show I am authenticated as test</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Then /^the toolbar should show I am authenticated as test$/
+     */
+    public function theToolbarShouldShowIAmAuthenticatedAsTest()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+</ol>
+</div>
+<div class="scenario">
+<h3>
+<span class="keyword">Scenario: </span>
+<span class="title">I can delete a user account</span>
+<span class="path">/var/work/vendor/paulgibbs/behat-wordpress-extension/features/user-admin.feature:18</span>
+</h3>
+<ol>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">there are users:</span>
+</div>
+<table class="argument">
+<thead>
+<tr class="row">
+<td>user_login</td>
+<td>user_pass</td>
+<td>user_email</td>
+<td>role</td>
+</tr>
+</thead>
+<tbody>
+<tr class="row">
+<td>test</td>
+<td>test</td>
+<td>test@example.com</td>
+<td>author</td>
+</tr>
+</tbody>
+</table>
+<div class="snippet"><pre>    /**
+     * @Given /^there are users:$/
+     */
+    public function thereAreUsers(TableNode $table)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I delete the "test" user account</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @When /^I delete the &quot;([^&quot;]*)&quot; user account$/
+     */
+    public function iDeleteTheUserAccount($arg1)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should not be able to log in as "test"</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Then /^I should not be able to log in as &quot;([^&quot;]*)&quot;$/
+     */
+    public function iShouldNotBeAbleToLogInAs($arg1)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+</ol>
+</div>
+</div>
+<div class="feature">
+<ul class="tags">
+<li>@db</li>
+</ul>
+<h2>
+<span class="keyword">Feature: </span>
+<span class="title">Viewing content</span>
+</h2>
+<p>
+In order to have confidence that WordHat is reliable for developers<br />
+As a WordHat maintainer<br />
+I want to test viewing content on a website<br />
+</p>
+
+<div class="scenario background">
+<h3>
+<span class="keyword">Background: </span>
+<span class="path">/var/work/vendor/paulgibbs/behat-wordpress-extension/features/viewing-content.feature:7</span>
+</h3>
+<ol>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">there are posts:</span>
+</div>
+<table class="argument">
+<thead>
+<tr class="row">
+<td>post_title</td>
+<td>post_content</td>
+<td>post_status</td>
+<td>post_author</td>
+</tr>
+</thead>
+<tbody>
+<tr class="row">
+<td>Just my article</td>
+<td>The content of my article</td>
+<td>publish</td>
+<td>admin</td>
+</tr>
+<tr class="row">
+<td>My draft</td>
+<td>This is just a draft</td>
+<td>draft</td>
+<td>admin</td>
+</tr>
+</tbody>
+</table>
+<div class="snippet"><pre>    /**
+     * @Given /^there are posts:$/
+     */
+    public function thereArePosts(TableNode $table)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+</ol>
+</div>
+<div class="scenario">
+<h3>
+<span class="keyword">Scenario: </span>
+<span class="title">Deleting an existing post</span>
+<span class="path">/var/work/vendor/paulgibbs/behat-wordpress-extension/features/viewing-content.feature:13</span>
+</h3>
+<ol>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I delete the post "Just my article"</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Given /^I delete the post &quot;([^&quot;]*)&quot;$/
+     */
+    public function iDeleteThePost($arg1)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should not be able to view the post "Just my article"</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Then /^I should not be able to view the post &quot;([^&quot;]*)&quot;$/
+     */
+    public function iShouldNotBeAbleToViewThePost($arg1)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+</ol>
+</div>
+<div class="scenario">
+<h3>
+<span class="keyword">Scenario: </span>
+<span class="title">Viewing a single page</span>
+<span class="path">/var/work/vendor/paulgibbs/behat-wordpress-extension/features/viewing-content.feature:17</span>
+</h3>
+<ol>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I am viewing a post:</span>
+</div>
+<table class="argument">
+<thead>
+<tr class="row">
+<td>post_type</td>
+<td>post_title</td>
+<td>post_content</td>
+<td>post_status</td>
+</tr>
+</thead>
+<tbody>
+<tr class="row">
+<td>page</td>
+<td>My about page</td>
+<td>About this site</td>
+<td>publish</td>
+</tr>
+</tbody>
+</table>
+<div class="snippet"><pre>    /**
+     * @Given /^I am viewing a post:$/
+     */
+    public function iAmViewingAPost(TableNode $table)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">My about page</strong>"</span>
+<span class="path">Behat\MinkExtension\Context\MinkContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see "<strong class="skipped_param">About this site</strong>"</span>
+<span class="path">Behat\MinkExtension\Context\MinkContext::assertPageContainsText()</span>
+</div>
+</li>
+</ol>
+</div>
+<div class="scenario">
+<h3>
+<span class="keyword">Scenario: </span>
+<span class="title">Viewing an existing post</span>
+<span class="path">/var/work/vendor/paulgibbs/behat-wordpress-extension/features/viewing-content.feature:24</span>
+</h3>
+<ol>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I am viewing the post "Just my article"</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Given /^I am viewing the post &quot;([^&quot;]*)&quot;$/
+     */
+    public function iAmViewingThePost($arg1)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">Just my article</strong>"</span>
+<span class="path">Behat\MinkExtension\Context\MinkContext::assertPageContainsText()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I should see "<strong class="skipped_param">The content of my article</strong>"</span>
+<span class="path">Behat\MinkExtension\Context\MinkContext::assertPageContainsText()</span>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="feature">
+<h2>
+<span class="keyword">Feature: </span>
+<span class="title">Widgets</span>
+</h2>
+<p>
+In order to have confidence that WordHat is reliable for developers<br />
+As a WordHat maintainer<br />
+I want to test managing widgets<br />
+</p>
+
+<div class="scenario">
+<ul class="tags">
+<li>@db</li>
+</ul>
+<h3>
+<span class="keyword">Scenario: </span>
+<span class="title">Viewing a widget</span>
+<span class="path">/var/work/vendor/paulgibbs/behat-wordpress-extension/features/widget.feature:7</span>
+</h3>
+<ol>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I have the "meta" widget in "Blog Sidebar"</span>
+</div>
+<table class="argument">
+<thead>
+<tr class="row">
+<td>Title</td>
+</tr>
+</thead>
+<tbody>
+<tr class="row">
+<td>My widget</td>
+</tr>
+</tbody>
+</table>
+<div class="snippet"><pre>    /**
+     * @Given /^I have the &quot;([^&quot;]*)&quot; widget in &quot;([^&quot;]*)&quot;$/
+     */
+    public function iHaveTheWidgetIn($arg1, $arg2, TableNode $table)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">I am on the homepage</span>
+<span class="path">Behat\MinkExtension\Context\MinkContext::iAmOnHomepage()</span>
+</div>
+</li>
+<li class="skipped">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should see "<strong class="skipped_param">My widget</strong>"</span>
+<span class="path">Behat\MinkExtension\Context\MinkContext::assertPageContainsText()</span>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="feature">
+<h2>
+<span class="keyword">Feature: </span>
+<span class="title">Changing page object namespaces</span>
+</h2>
+<p>
+In order to organise my code better<br />
+As a Developer<br />
+I need to define namespaces for my page objects<br />
+</p>
+
+<div class="scenario">
+<h3>
+<span class="keyword">Scenario: </span>
+<span class="title">Configuring both element and page namespaces</span>
+<span class="path">/var/work/vendor/sensiolabs/behat-page-object-extension/features/changing_page_object_namespaces.feature:6</span>
+</h3>
+<ol>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">a behat configuration:</span>
+</div>
+<pre class="argument">default:
+  suites:
+    default:
+      contexts: [SearchContext]
+  extensions:
+    SensioLabs\Behat\PageObjectExtension:
+      namespaces:
+        page: Acme\Page
+        element: Acme\Element
+    Behat\MinkExtension:
+      goutte: ~
+      base_url: http://localhost:8000</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a behat configuration:$/
+     */
+    public function aBehatConfiguration(PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a context file "features/bootstrap/SearchContext.php" contains:</span>
+</div>
+<pre class="argument">&lt;?php
+
+use SensioLabs\Behat\PageObjectExtension\Context\PageObjectContext;
+
+class SearchContext extends PageObjectContext
+{
+    /**
+     * @Given /^I visited the homepage$/
+     */
+    public function iVisitedTheHomepage()
+    {
+        $this-&gt;getPage('Homepage')-&gt;open();
+    }
+
+    /**
+     * @Then /^I should not see the tabs$/
+     */
+    public function iShouldSeeTheTabs()
+    {
+        if ($this-&gt;getPage('Homepage')-&gt;hasTabs()) {
+            throw new \LogicException('Tabs are visible');
+        }
+    }
+}</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a context file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aContextFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a page object file "features/bootstrap/Acme/Page/Homepage.php" contains:</span>
+</div>
+<pre class="argument">&lt;?php
+
+namespace Acme\Page;
+
+use SensioLabs\Behat\PageObjectExtension\PageObject\Page;
+
+class Homepage extends Page
+{
+    /**
+     * @var string $path
+     */
+    protected $path = '/';
+
+    public function hasTabs()
+    {
+        return $this-&gt;hasElement('Search results navigation');
+    }
+}</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a page object file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aPageObjectFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a page object file "features/bootstrap/Acme/Element/SearchResultsNavigation.php" contains:</span>
+</div>
+<pre class="argument">&lt;?php
+
+namespace Acme\Element;
+
+use Behat\Mink\Exception\ElementNotFoundException;
+use SensioLabs\Behat\PageObjectExtension\PageObject\Element;
+use SensioLabs\Behat\PageObjectExtension\PageObject\Page;
+
+class SearchResultsNavigation extends Element
+{
+    /**
+     * @var array $selector
+     */
+    protected $selector = array('xpath' =&gt; '//div[@class=&quot;tabs&quot;]');
+}</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a page object file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aPageObjectFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a feature file "features/search.feature" contains:</span>
+</div>
+<pre class="argument">Feature: Search
+  In order to find lolcats
+  As a Cat Lover
+  I want to search the internetz
+
+  Scenario: Searching for lolcats
+    Given I visited the homepage
+    Then I should not see the tabs</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a feature file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aFeatureFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I run behat</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @When /^I run behat$/
+     */
+    public function iRunBehat()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">it should pass</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Then /^it should pass$/
+     */
+    public function itShouldPass()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+</ol>
+</div>
+<div class="scenario">
+<h3>
+<span class="keyword">Scenario: </span>
+<span class="title">Configuring page namespace only</span>
+<span class="path">/var/work/vendor/sensiolabs/behat-page-object-extension/features/changing_page_object_namespaces.feature:102</span>
+</h3>
+<ol>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">a behat configuration:</span>
+</div>
+<pre class="argument">default:
+  suites:
+    default:
+      contexts: [SearchContext]
+  extensions:
+    SensioLabs\Behat\PageObjectExtension:
+      namespaces:
+        page: Acme\Page
+    Behat\MinkExtension:
+      goutte: ~
+      base_url: http://localhost:8000</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a behat configuration:$/
+     */
+    public function aBehatConfiguration(PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a context file "features/bootstrap/SearchContext.php" contains:</span>
+</div>
+<pre class="argument">&lt;?php
+
+use SensioLabs\Behat\PageObjectExtension\Context\PageObjectContext;
+
+class SearchContext extends PageObjectContext
+{
+    /**
+     * @Given /^I visited the homepage$/
+     */
+    public function iVisitedTheHomepage()
+    {
+        $this-&gt;getPage('Homepage')-&gt;open();
+    }
+
+    /**
+     * @Then /^I should not see the tabs$/
+     */
+    public function iShouldSeeTheTabs()
+    {
+        if ($this-&gt;getPage('Homepage')-&gt;hasTabs()) {
+            throw new \LogicException('Tabs are visible');
+        }
+    }
+}</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a context file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aContextFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a page object file "features/bootstrap/Acme/Page/Homepage.php" contains:</span>
+</div>
+<pre class="argument">&lt;?php
+
+namespace Acme\Page;
+
+use SensioLabs\Behat\PageObjectExtension\PageObject\Page;
+
+class Homepage extends Page
+{
+    /**
+     * @var string $path
+     */
+    protected $path = '/';
+
+    public function hasTabs()
+    {
+        return $this-&gt;hasElement('Search results navigation');
+    }
+}</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a page object file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aPageObjectFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a page object file "features/bootstrap/Acme/Page/Element/SearchResultsNavigation.php" contains:</span>
+</div>
+<pre class="argument">&lt;?php
+
+namespace Acme\Page\Element;
+
+use Behat\Mink\Exception\ElementNotFoundException;
+use SensioLabs\Behat\PageObjectExtension\PageObject\Element;
+use SensioLabs\Behat\PageObjectExtension\PageObject\Page;
+
+class SearchResultsNavigation extends Element
+{
+    /**
+     * @var array $selector
+     */
+    protected $selector = array('xpath' =&gt; '//div[@class=&quot;tabs&quot;]');
+}</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a page object file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aPageObjectFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a feature file "features/search.feature" contains:</span>
+</div>
+<pre class="argument">Feature: Search
+  In order to find lolcats
+  As a Cat Lover
+  I want to search the internetz
+
+  Scenario: Searching for lolcats
+    Given I visited the homepage
+    Then I should not see the tabs</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a feature file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aFeatureFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I run behat</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @When /^I run behat$/
+     */
+    public function iRunBehat()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">it should pass</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Then /^it should pass$/
+     */
+    public function itShouldPass()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+</ol>
+</div>
+<div class="scenario">
+<h3>
+<span class="keyword">Scenario: </span>
+<span class="title">Configuring multiple namespaces</span>
+<span class="path">/var/work/vendor/sensiolabs/behat-page-object-extension/features/changing_page_object_namespaces.feature:197</span>
+</h3>
+<ol>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">a behat configuration:</span>
+</div>
+<pre class="argument">default:
+  suites:
+    default:
+      contexts: [SearchContext]
+  extensions:
+    SensioLabs\Behat\PageObjectExtension:
+      namespaces:
+        page: [Page, Acme\Page]
+        element: [Element, Acme\Element]
+    Behat\MinkExtension:
+      goutte: ~
+      base_url: http://localhost:8000</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a behat configuration:$/
+     */
+    public function aBehatConfiguration(PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a context file "features/bootstrap/SearchContext.php" contains:</span>
+</div>
+<pre class="argument">&lt;?php
+
+use SensioLabs\Behat\PageObjectExtension\Context\PageObjectContext;
+
+class SearchContext extends PageObjectContext
+{
+    /**
+     * @Given /^I visited the homepage$/
+     */
+    public function iVisitedTheHomepage()
+    {
+        $this-&gt;getPage('Homepage')-&gt;open();
+    }
+
+    /**
+     * @Then /^I should not see the tabs$/
+     */
+    public function iShouldSeeTheTabs()
+    {
+        if ($this-&gt;getPage('Homepage')-&gt;hasTabs()) {
+            throw new \LogicException('Tabs are visible');
+        }
+    }
+}</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a context file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aContextFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a page object file "features/bootstrap/Acme/Page/Homepage.php" contains:</span>
+</div>
+<pre class="argument">&lt;?php
+
+namespace Acme\Page;
+
+use SensioLabs\Behat\PageObjectExtension\PageObject\Page;
+
+class Homepage extends Page
+{
+    /**
+     * @var string $path
+     */
+    protected $path = '/';
+
+    public function hasTabs()
+    {
+        return $this-&gt;hasElement('Search results navigation');
+    }
+}</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a page object file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aPageObjectFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a page object file "features/bootstrap/Element/SearchResultsNavigation.php" contains:</span>
+</div>
+<pre class="argument">&lt;?php
+
+namespace Element;
+
+use Behat\Mink\Exception\ElementNotFoundException;
+use SensioLabs\Behat\PageObjectExtension\PageObject\Element;
+use SensioLabs\Behat\PageObjectExtension\PageObject\Page;
+
+class SearchResultsNavigation extends Element
+{
+    /**
+     * @var array $selector
+     */
+    protected $selector = array('xpath' =&gt; '//div[@class=&quot;tabs&quot;]');
+}</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a page object file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aPageObjectFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a feature file "features/search.feature" contains:</span>
+</div>
+<pre class="argument">Feature: Search
+  In order to find lolcats
+  As a Cat Lover
+  I want to search the internetz
+
+  Scenario: Searching for lolcats
+    Given I visited the homepage
+    Then I should not see the tabs</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a feature file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aFeatureFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I run behat</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @When /^I run behat$/
+     */
+    public function iRunBehat()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">it should pass</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Then /^it should pass$/
+     */
+    public function itShouldPass()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+</ol>
+</div>
+<div class="scenario">
+<h3>
+<span class="keyword">Scenario: </span>
+<span class="title">Configuring multiple namespaces for page only</span>
+<span class="path">/var/work/vendor/sensiolabs/behat-page-object-extension/features/changing_page_object_namespaces.feature:293</span>
+</h3>
+<ol>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">a behat configuration:</span>
+</div>
+<pre class="argument">default:
+  suites:
+    default:
+      contexts: [SearchContext]
+  extensions:
+    SensioLabs\Behat\PageObjectExtension:
+      namespaces:
+        page: [Page, Acme\Page]
+    Behat\MinkExtension:
+      goutte: ~
+      base_url: http://localhost:8000</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a behat configuration:$/
+     */
+    public function aBehatConfiguration(PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a context file "features/bootstrap/SearchContext.php" contains:</span>
+</div>
+<pre class="argument">&lt;?php
+
+use SensioLabs\Behat\PageObjectExtension\Context\PageObjectContext;
+
+class SearchContext extends PageObjectContext
+{
+    /**
+     * @Given /^I visited the homepage$/
+     */
+    public function iVisitedTheHomepage()
+    {
+        $this-&gt;getPage('Homepage')-&gt;open();
+    }
+
+    /**
+     * @Then /^I should not see the tabs$/
+     */
+    public function iShouldSeeTheTabs()
+    {
+        if ($this-&gt;getPage('Homepage')-&gt;hasTabs()) {
+            throw new \LogicException('Tabs are visible');
+        }
+    }
+}</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a context file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aContextFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a page object file "features/bootstrap/Acme/Page/Homepage.php" contains:</span>
+</div>
+<pre class="argument">&lt;?php
+
+namespace Acme\Page;
+
+use SensioLabs\Behat\PageObjectExtension\PageObject\Page;
+
+class Homepage extends Page
+{
+    /**
+     * @var string $path
+     */
+    protected $path = '/';
+
+    public function hasTabs()
+    {
+        return $this-&gt;hasElement('Search results navigation');
+    }
+}</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a page object file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aPageObjectFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a page object file "features/bootstrap/Acme/Page/Element/SearchResultsNavigation.php" contains:</span>
+</div>
+<pre class="argument">&lt;?php
+
+namespace Acme\Page\Element;
+
+use Behat\Mink\Exception\ElementNotFoundException;
+use SensioLabs\Behat\PageObjectExtension\PageObject\Element;
+use SensioLabs\Behat\PageObjectExtension\PageObject\Page;
+
+class SearchResultsNavigation extends Element
+{
+    /**
+     * @var array $selector
+     */
+    protected $selector = array('xpath' =&gt; '//div[@class=&quot;tabs&quot;]');
+}</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a page object file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aPageObjectFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a feature file "features/search.feature" contains:</span>
+</div>
+<pre class="argument">Feature: Search
+  In order to find lolcats
+  As a Cat Lover
+  I want to search the internetz
+
+  Scenario: Searching for lolcats
+    Given I visited the homepage
+    Then I should not see the tabs</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a feature file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aFeatureFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I run behat</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @When /^I run behat$/
+     */
+    public function iRunBehat()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">it should pass</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Then /^it should pass$/
+     */
+    public function itShouldPass()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+</ol>
+</div>
+</div>
+<div class="feature">
+<ul class="tags">
+<li>@fixtures</li>
+</ul>
+<h2>
+<span class="keyword">Feature: </span>
+<span class="title">Search</span>
+</h2>
+<p>
+In order to find lolcats<br />
+As a Cat Lover<br />
+I want to search the internetz<br />
+</p>
+
+<div class="scenario">
+<h3>
+<span class="keyword">Scenario: </span>
+<span class="title">Searching for lolcats</span>
+<span class="path">/var/work/vendor/sensiolabs/behat-page-object-extension/features/fixtures/default/features/search.feature:7</span>
+</h3>
+<ol>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I visited the homepage</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Given /^I visited the homepage$/
+     */
+    public function iVisitedTheHomepage()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">I should not see the "Images" tab</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Then /^I should not see the &quot;([^&quot;]*)&quot; tab$/
+     */
+    public function iShouldNotSeeTheTab($arg1)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+</ol>
+</div>
+</div>
+<div class="feature">
+<h2>
+<span class="keyword">Feature: </span>
+<span class="title">Injecting a page object directly into the context</span>
+</h2>
+<p>
+In order to make page object dependencies visible<br />
+As a Developer<br />
+I need to inject a page object directly into the context's constructor<br />
+</p>
+
+<div class="scenario">
+<h3>
+<span class="keyword">Scenario: </span>
+<span class="title">Injecting a page object via a constructor</span>
+<span class="path">/var/work/vendor/sensiolabs/behat-page-object-extension/features/injecting_a_page_object_directly_into_the_context.feature:6</span>
+</h3>
+<ol>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I configured the page object extension</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Given /^I configured the page object extension$/
+     */
+    public function iConfiguredThePageObjectExtension()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a context file "features/bootstrap/SearchContext.php" contains:</span>
+</div>
+<pre class="argument">&lt;?php
+
+use Behat\Behat\Context\Context;
+use Page\Homepage;
+use Page\Element\SearchResultsNavigation;
+
+class SearchContext implements Context
+{
+    /**
+     * @var Homepage
+     */
+    private $homepage;
+
+    /**
+     * @var SearchResultsNavigation
+     */
+    private $searchResultsNavigation;
+
+    /**
+     * @param Homepage                $homepage
+     * @param SearchResultsNavigation $searchResultsNavigation
+     */
+    public function __construct(Homepage $homepage, SearchResultsNavigation $searchResultsNavigation)
+    {
+        $this-&gt;homepage = $homepage;
+        $this-&gt;searchResultsNavigation = $searchResultsNavigation;
+    }
+
+    /**
+     * @Given /^I visited the homepage$/
+     */
+    public function iVisitedTheHomepage()
+    {
+        $this-&gt;homepage-&gt;open();
+    }
+
+    /**
+     * @When /^I should not see the &quot;(?P&lt;tab&gt;[^&quot;]*)&quot; tab$/
+     */
+    public function iShouldSeeNotTheTab($tab)
+    {
+        if ($this-&gt;searchResultsNavigation-&gt;hasTab($tab)) {
+            throw new \LogicException(sprintf('%s tab is present on the page', $tab));
+        }
+    }
+}</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a context file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aContextFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a page object file "features/bootstrap/Page/Homepage.php" contains:</span>
+</div>
+<pre class="argument">&lt;?php
+
+namespace Page;
+
+use SensioLabs\Behat\PageObjectExtension\PageObject\Page;
+
+class Homepage extends Page
+{
+    /**
+     * @var string
+     */
+    protected $path = '/';
+}</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a page object file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aPageObjectFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a page object file "features/bootstrap/Page/Element/SearchResultsNavigation.php" contains:</span>
+</div>
+<pre class="argument">&lt;?php
+
+namespace Page\Element;
+
+use SensioLabs\Behat\PageObjectExtension\PageObject\Element;
+
+class SearchResultsNavigation extends Element
+{
+    /**
+     * @var string
+     */
+    protected $selector = 'div.tabs';
+
+    /**
+     * @return boolean
+     */
+    public function hasTab($name)
+    {
+        return $this-&gt;hasLink($name);
+    }
+}</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a page object file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aPageObjectFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a feature file "features/search.feature" contains:</span>
+</div>
+<pre class="argument">Feature: Search
+  In order to find lolcats
+  As a Cat Lover
+  I want to search the internetz
+
+  Scenario: Searching for lolcats
+    Given I visited the homepage
+     Then I should not see the &quot;Images&quot; tab</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a feature file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aFeatureFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I run behat</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @When /^I run behat$/
+     */
+    public function iRunBehat()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">it should pass</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Then /^it should pass$/
+     */
+    public function itShouldPass()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+</ol>
+</div>
+<div class="scenario">
+<h3>
+<span class="keyword">Scenario: </span>
+<span class="title">Configuring the generated proxy location</span>
+<span class="path">/var/work/vendor/sensiolabs/behat-page-object-extension/features/injecting_a_page_object_directly_into_the_context.feature:111</span>
+</h3>
+<ol>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">a behat configuration:</span>
+</div>
+<pre class="argument">default:
+  suites:
+    default:
+      contexts: [SearchContext]
+  extensions:
+    SensioLabs\Behat\PageObjectExtension:
+      factory:
+        proxies_target_dir: '%paths.base%/tmp/'
+    Behat\MinkExtension:
+      goutte: ~
+      base_url: http://localhost:8000</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a behat configuration:$/
+     */
+    public function aBehatConfiguration(PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a feature with a context file that uses page objects</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Given /^a feature with a context file that uses page objects$/
+     */
+    public function aFeatureWithAContextFileThatUsesPageObjects()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I run behat</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @When /^I run behat$/
+     */
+    public function iRunBehat()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">it should pass</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Then /^it should pass$/
+     */
+    public function itShouldPass()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">the proxies should be generated in the "tmp" directory</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Given /^the proxies should be generated in the &quot;([^&quot;]*)&quot; directory$/
+     */
+    public function theProxiesShouldBeGeneratedInTheDirectory($arg1)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+</ol>
+</div>
+</div>
+<div class="feature">
+<h2>
+<span class="keyword">Feature: </span>
+<span class="title">Injecting a page object factory</span>
+</h2>
+<p>
+In order to avoid extending third-party contexts<br />
+As a Developer<br />
+I need other means of injecting the page object factory<br />
+</p>
+
+<div class="scenario">
+<h3>
+<span class="keyword">Scenario: </span>
+<span class="title">Delegating page interactions to page objects</span>
+<span class="path">/var/work/vendor/sensiolabs/behat-page-object-extension/features/injecting_the_page_object_factory.feature:6</span>
+</h3>
+<ol>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I configured the page object extension</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Given /^I configured the page object extension$/
+     */
+    public function iConfiguredThePageObjectExtension()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a context file "features/bootstrap/SearchContext.php" contains:</span>
+</div>
+<pre class="argument">&lt;?php
+
+use Behat\Behat\Context\Context;
+use SensioLabs\Behat\PageObjectExtension\Context\PageObjectAware;
+use SensioLabs\Behat\PageObjectExtension\Context\PageObjectContext;
+use SensioLabs\Behat\PageObjectExtension\PageObject\Factory as PageObjectFactory;
+use SensioLabs\Behat\PageObjectExtension\PageObject\Page;
+
+class SearchContext implements Context, PageObjectAware
+{
+    private $factory;
+
+    /**
+     * @param PageObjectFactory $pageObjectFactory
+     */
+    public function setPageObjectFactory(PageObjectFactory $factory)
+    {
+        $this-&gt;factory = $factory;
+    }
+
+    /**
+     * @Given /^I visited the homepage$/
+     */
+    public function iVisitedTheHomepage()
+    {
+        $this-&gt;getPage('Homepage')-&gt;open();
+    }
+
+    /**
+     * @Then /^I should be able to search$/
+     */
+    public function iShouldBeAbleToSearch()
+    {
+        if (!$this-&gt;getPage('Homepage')-&gt;hasSearchForm()) {
+            throw new \LogicException('Could not find the search form');
+        }
+    }
+
+    /**
+     * @return Page
+     */
+    private function getPage($name)
+    {
+        return $this-&gt;factory-&gt;createPage($name);
+    }
+}</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a context file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aContextFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a page object file "features/bootstrap/Page/Homepage.php" contains:</span>
+</div>
+<pre class="argument">&lt;?php
+
+namespace Page;
+
+use SensioLabs\Behat\PageObjectExtension\PageObject\Page;
+
+class Homepage extends Page
+{
+    /**
+     * @var string $path
+     */
+    protected $path = '/';
+
+    /**
+     * @var array $elements
+     */
+    protected $elements = array(
+        'Search form' =&gt; array('css' =&gt; 'form[name=&quot;search&quot;]')
+    );
+
+    /**
+     * @return boolean
+     */
+    public function hasSearchForm()
+    {
+        return $this-&gt;hasElement('Search form');
+    }
+}</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a page object file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aPageObjectFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a feature file "features/search.feature" contains:</span>
+</div>
+<pre class="argument">Feature: Search
+  In order to find lolcats
+  As a Cat Lover
+  I want to search the internetz
+
+  Scenario: Searching for lolcats
+    Given I visited the homepage
+     Then I should be able to search</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a feature file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aFeatureFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I run behat</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @When /^I run behat$/
+     */
+    public function iRunBehat()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">it should pass</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Then /^it should pass$/
+     */
+    public function itShouldPass()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+</ol>
+</div>
+</div>
+<div class="feature">
+<h2>
+<span class="keyword">Feature: </span>
+<span class="title">Providing a custom class name resolver for the default page object factory</span>
+</h2>
+<p>
+In order to customise the way page object class names are resolved<br />
+As an Experienced Developer<br />
+I need to provide my own implementation of the class name resolver<br />
+</p>
+
+<div class="scenario">
+<h3>
+<span class="keyword">Scenario: </span>
+<span class="title">Custom class name resolver</span>
+<span class="path">/var/work/vendor/sensiolabs/behat-page-object-extension/features/providing_a_custom_class_name_resolver_for_the_default_page_object_factory.feature:6</span>
+</h3>
+<ol>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">a behat configuration:</span>
+</div>
+<pre class="argument">default:
+  suites:
+    default:
+      contexts: [SearchContext]
+  extensions:
+    SensioLabs\Behat\PageObjectExtension:
+      factory:
+        id: ~
+        class_name_resolver: acme.page_object.class_name_resolver
+    acme_page_object_extension.php: ~
+    Behat\MinkExtension:
+      goutte: ~
+      base_url: http://localhost:8000</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a behat configuration:$/
+     */
+    public function aBehatConfiguration(PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">an extension file "acme_page_object_extension.php" contains:</span>
+</div>
+<pre class="argument">&lt;?php
+
+use SensioLabs\Behat\PageObjectExtension\PageObject\Factory\ClassNameResolver;
+
+class AcmeClassNameResolver implements ClassNameResolver
+{
+    /**
+     * @param string $name
+     *
+     * @return string
+     */
+    public function resolvePage($name)
+    {
+        return str_replace(array(' ', '-&gt;'), array('', '\\'), ucwords($name));
+    }
+
+    /**
+     * @param string $name
+     *
+     * @return string
+     */
+    public function resolveElement($name)
+    {
+        return $this-&gt;resolvePage($name);
+    }
+}
+
+use Behat\Testwork\ServiceContainer\Extension as TestworkExtension;
+use Behat\Testwork\ServiceContainer\ExtensionManager;
+use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
+use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\DependencyInjection\Reference;
+
+class AcmePageObjectExtension implements TestworkExtension
+{
+    /**
+     * {@inheritdoc}
+     */
+    public function getConfigKey()
+    {
+        return 'acme_page_object';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function initialize(ExtensionManager $extensionManager)
+    {
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function configure(ArrayNodeDefinition $builder)
+    {
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function load(ContainerBuilder $container, array $config)
+    {
+        $definition = new Definition('AcmeClassNameResolver');
+        $container-&gt;setDefinition('acme.page_object.class_name_resolver', $definition);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function process(ContainerBuilder $container)
+    {
+    }
+}
+
+return new AcmePageObjectExtension();</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^an extension file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function anExtensionFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a context file "features/bootstrap/SearchContext.php" contains:</span>
+</div>
+<pre class="argument">&lt;?php
+
+use SensioLabs\Behat\PageObjectExtension\Context\PageObjectContext;
+
+class SearchContext extends PageObjectContext
+{
+    /**
+     * @Given /^I visited the homepage$/
+     */
+    public function iVisitedTheHomepage()
+    {
+        $this-&gt;getPage('Page -&gt; homepage')-&gt;open();
+    }
+
+    /**
+     * @Then /^I should not see the tabs$/
+     */
+    public function iShouldSeeTheTabs()
+    {
+        if ($this-&gt;getPage('Page -&gt; homepage')-&gt;hasTabs()) {
+            throw new \LogicException('Tabs are visible');
+        }
+    }
+}</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a context file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aContextFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a page object file "features/bootstrap/Page/Homepage.php" contains:</span>
+</div>
+<pre class="argument">&lt;?php
+
+namespace Page;
+
+use SensioLabs\Behat\PageObjectExtension\PageObject\Page;
+
+class Homepage extends Page
+{
+    /**
+     * @var string $path
+     */
+    protected $path = '/';
+
+    public function hasTabs()
+    {
+        return $this-&gt;hasElement('Page -&gt; Element -&gt; SearchResultsNavigation');
+    }
+}</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a page object file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aPageObjectFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a page object file "features/bootstrap/Page/Element/SearchResultsNavigation.php" contains:</span>
+</div>
+<pre class="argument">&lt;?php
+
+namespace Page\Element;
+
+use Behat\Mink\Exception\ElementNotFoundException;
+use SensioLabs\Behat\PageObjectExtension\PageObject\Element;
+use SensioLabs\Behat\PageObjectExtension\PageObject\Page;
+
+class SearchResultsNavigation extends Element
+{
+    /**
+     * @var array $selector
+     */
+    protected $selector = array('xpath' =&gt; '//div[@class=&quot;tabs&quot;]');
+}</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a page object file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aPageObjectFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a feature file "features/search.feature" contains:</span>
+</div>
+<pre class="argument">Feature: Search
+  In order to find lolcats
+  As a Cat Lover
+  I want to search the internetz
+
+  Scenario: Searching for lolcats
+    Given I visited the homepage
+    Then I should not see the tabs</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a feature file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aFeatureFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I run behat</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @When /^I run behat$/
+     */
+    public function iRunBehat()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">it should pass</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Then /^it should pass$/
+     */
+    public function itShouldPass()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+</ol>
+</div>
+</div>
+<div class="feature">
+<h2>
+<span class="keyword">Feature: </span>
+<span class="title">Providing a custom page object factory</span>
+</h2>
+<p>
+In order to customise the way page objects are created<br />
+As an Experienced Developer<br />
+I need to provide my own implementation of the page object factory<br />
+</p>
+
+<div class="scenario">
+<h3>
+<span class="keyword">Scenario: </span>
+<span class="title">Custom page object factory</span>
+<span class="path">/var/work/vendor/sensiolabs/behat-page-object-extension/features/providing_a_custom_page_object_factory.feature:6</span>
+</h3>
+<ol>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">a behat configuration:</span>
+</div>
+<pre class="argument">default:
+  suites:
+    default:
+      contexts: [SearchContext]
+  extensions:
+    SensioLabs\Behat\PageObjectExtension:
+      factory: acme.page_object.factory
+    acme_page_object_extension.php: ~
+    Behat\MinkExtension:
+      goutte: ~
+      base_url: http://localhost:8000</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a behat configuration:$/
+     */
+    public function aBehatConfiguration(PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">an extension file "acme_page_object_extension.php" contains:</span>
+</div>
+<pre class="argument">&lt;?php
+
+use Behat\Mink\Mink;
+use SensioLabs\Behat\PageObjectExtension\PageObject\Element;
+use SensioLabs\Behat\PageObjectExtension\PageObject\InlineElement;
+use SensioLabs\Behat\PageObjectExtension\PageObject\Page;
+use SensioLabs\Behat\PageObjectExtension\PageObject\Factory as BaseFactory;
+
+class AcmeFactory implements BaseFactory
+{
+    /**
+     * @var Mink
+     */
+    private $mink = null;
+
+    /**
+     * @var array
+     */
+    private $pageParameters = array();
+
+    /**
+     * @var Mink  $mink
+     * @var array $pageParameters
+     */
+    public function __construct(Mink $mink, array $pageParameters)
+    {
+        $this-&gt;mink = $mink;
+        $this-&gt;pageParameters = $pageParameters;
+    }
+
+    /**
+     * @param string $name
+     *
+     * @return Page
+     */
+    public function createPage($name)
+    {
+        return new $name($this-&gt;mink-&gt;getSession(), $this, $this-&gt;pageParameters);
+    }
+
+    /**
+     * @param string $name
+     *
+     * @return Element
+     */
+    public function createElement($name)
+    {
+        return new $name($this-&gt;mink-&gt;getSession(), $this);
+    }
+
+    /**
+     * @param array|string $selector
+     * @param null|string  $name
+     *
+     * @return InlineElement
+     */
+    public function createInlineElement($selector, $name = null)
+    {
+        return new InlineElement($selector, $this-&gt;mink-&gt;getSession(), $this);
+    }
+
+    /**
+     * @param string $pageObjectClass
+     *
+     * @return PageObject
+     */
+    public function create($pageObjectClass)
+    {
+        return new $class($this-&gt;mink-&gt;getSession(), $this, $this-&gt;pageParameters);
+    }
+}
+
+use Behat\Testwork\ServiceContainer\Extension as TestworkExtension;
+use Behat\Testwork\ServiceContainer\ExtensionManager;
+use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
+use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\DependencyInjection\Reference;
+
+class AcmePageObjectExtension implements TestworkExtension
+{
+    /**
+     * {@inheritdoc}
+     */
+    public function getConfigKey()
+    {
+        return 'acme_page_object';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function initialize(ExtensionManager $extensionManager)
+    {
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function configure(ArrayNodeDefinition $builder)
+    {
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function load(ContainerBuilder $container, array $config)
+    {
+        $definition = new Definition('AcmeFactory');
+        $definition-&gt;setArguments(array(new Reference('mink'), '%mink.parameters%'));
+        $container-&gt;setDefinition('acme.page_object.factory', $definition);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function process(ContainerBuilder $container)
+    {
+    }
+}
+
+return new AcmePageObjectExtension();</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^an extension file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function anExtensionFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a context file "features/bootstrap/SearchContext.php" contains:</span>
+</div>
+<pre class="argument">&lt;?php
+
+use SensioLabs\Behat\PageObjectExtension\Context\PageObjectContext;
+
+class SearchContext extends PageObjectContext
+{
+    /**
+     * @Given /^I visited the homepage$/
+     */
+    public function iVisitedTheHomepage()
+    {
+        $this-&gt;getPage('Page\Homepage')-&gt;open();
+    }
+
+    /**
+     * @Then /^I should not see the tabs$/
+     */
+    public function iShouldSeeTheTabs()
+    {
+        if ($this-&gt;getPage('Page\Homepage')-&gt;hasTabs()) {
+            throw new \LogicException('Tabs are visible');
+        }
+    }
+}</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a context file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aContextFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a page object file "features/bootstrap/Page/Homepage.php" contains:</span>
+</div>
+<pre class="argument">&lt;?php
+
+namespace Page;
+
+use SensioLabs\Behat\PageObjectExtension\PageObject\Page;
+
+class Homepage extends Page
+{
+    /**
+     * @var string $path
+     */
+    protected $path = '/';
+
+    public function hasTabs()
+    {
+        return $this-&gt;hasElement('Page\Element\SearchResultsNavigation');
+    }
+}</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a page object file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aPageObjectFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a page object file "features/bootstrap/Page/Element/SearchResultsNavigation.php" contains:</span>
+</div>
+<pre class="argument">&lt;?php
+
+namespace Page\Element;
+
+use Behat\Mink\Exception\ElementNotFoundException;
+use SensioLabs\Behat\PageObjectExtension\PageObject\Element;
+use SensioLabs\Behat\PageObjectExtension\PageObject\Page;
+
+class SearchResultsNavigation extends Element
+{
+    /**
+     * @var array $selector
+     */
+    protected $selector = array('xpath' =&gt; '//div[@class=&quot;tabs&quot;]');
+}</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a page object file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aPageObjectFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a feature file "features/search.feature" contains:</span>
+</div>
+<pre class="argument">Feature: Search
+  In order to find lolcats
+  As a Cat Lover
+  I want to search the internetz
+
+  Scenario: Searching for lolcats
+    Given I visited the homepage
+    Then I should not see the tabs</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a feature file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aFeatureFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I run behat</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @When /^I run behat$/
+     */
+    public function iRunBehat()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">it should pass</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Then /^it should pass$/
+     */
+    public function itShouldPass()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+</ol>
+</div>
+</div>
+<div class="feature">
+<h2>
+<span class="keyword">Feature: </span>
+<span class="title">Using page objects with a factory</span>
+</h2>
+<p>
+In order to keep my context files maintainable<br />
+As a Developer<br />
+I need to encapsulate knowledge about pages in page objects<br />
+</p>
+
+<div class="scenario">
+<h3>
+<span class="keyword">Scenario: </span>
+<span class="title">Using a factory to create page objects</span>
+<span class="path">/var/work/vendor/sensiolabs/behat-page-object-extension/features/using_page_objects_with_a_factory.feature:6</span>
+</h3>
+<ol>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">a behat configuration:</span>
+</div>
+<pre class="argument">default:
+  suites:
+    default:
+      contexts: [SearchContext]
+  extensions:
+    SensioLabs\Behat\PageObjectExtension: ~
+    Behat\MinkExtension:
+      goutte: ~
+      base_url: http://localhost:8000</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a behat configuration:$/
+     */
+    public function aBehatConfiguration(PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a context file "features/bootstrap/SearchContext.php" contains:</span>
+</div>
+<pre class="argument">&lt;?php
+
+use SensioLabs\Behat\PageObjectExtension\Context\PageObjectContext;
+
+class SearchContext extends PageObjectContext
+{
+    /**
+     * @Given /^I visited the homepage$/
+     */
+    public function iVisitedTheHomepage()
+    {
+        $this-&gt;getPage('Homepage')-&gt;open();
+    }
+
+    /**
+     * @When /^I search for &quot;(?P&lt;keywords&gt;[^&quot;]*)&quot;$/
+     */
+    public function iSearchFor($keywords)
+    {
+        $this-&gt;getPage('Homepage')-&gt;search($keywords);
+    }
+
+    /**
+     * @When /^I change the tab to &quot;(?P&lt;tab&gt;[^&quot;]*)&quot;$/
+     */
+    public function iChangeTheTabTo($tab)
+    {
+        $this-&gt;getPage('Web search results')-&gt;switchTab($tab);
+    }
+
+    /**
+     * @Then /^I should see a list of &quot;(?P&lt;keywords&gt;[^&quot;]*)&quot; websites$/
+     */
+    public function iShouldSeeAListOfWebsites($keywords)
+    {
+        $resultCount = $this-&gt;getPage('Web search results')-&gt;countResults($keywords);
+
+        if ($resultCount &lt; 1) {
+            throw new \LogicException('Expected at least one search result');
+        }
+    }
+
+    /**
+     * @Then /^I should see a list of &quot;(?P&lt;keywords&gt;[^&quot;]*)&quot; images$/
+     */
+    public function iShouldSeeAListOfImages($keywords)
+    {
+        $resultCount = $this-&gt;getPage('Images search results')-&gt;countResults($keywords);
+
+        if ($resultCount &lt; 1) {
+            throw new \LogicException('Expected at least one search result');
+        }
+    }
+}</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a context file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aContextFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a page object file "features/bootstrap/Page/Homepage.php" contains:</span>
+</div>
+<pre class="argument">&lt;?php
+
+namespace Page;
+
+use SensioLabs\Behat\PageObjectExtension\PageObject\Page;
+
+class Homepage extends Page
+{
+    /**
+     * @var string
+     */
+    protected $path = '/';
+
+    /**
+     * @var array $elements
+     */
+    protected $elements = array(
+        'Search form' =&gt; array('css' =&gt; 'form[name=&quot;search&quot;]')
+    );
+
+    /**
+     * @param string $keywords
+     *
+     * @return Page
+     */
+    public function search($keywords)
+    {
+        $element = $this-&gt;getElement('Search form');
+        $element-&gt;fillField('query', $keywords);
+        $element-&gt;pressButton('Search');
+
+        return $this-&gt;getPage('Web search results');
+    }
+}</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a page object file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aPageObjectFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a page object file "features/bootstrap/Page/WebSearchResults.php" contains:</span>
+</div>
+<pre class="argument">&lt;?php
+
+namespace Page;
+
+use SensioLabs\Behat\PageObjectExtension\PageObject\Page;
+
+class WebSearchResults extends Page
+{
+    /**
+     * @param string $keywords
+     *
+     * @return integer
+     */
+    public function countResults($keywords)
+    {
+        $xpath = sprintf(
+            '//h3[contains(translate(.,&quot;abcdefghijklmnopqrstuvwxyz&quot;,&quot;ABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;), &quot;%s&quot;) and @class=&quot;result-item&quot;]/a',
+            strtoupper($keywords)
+        );
+        $results = $this-&gt;findAll('xpath', $xpath);
+
+        return count($results);
+    }
+
+    /**
+     * @param string $name
+     *
+     * @return Page
+     */
+    public function switchTab($name)
+    {
+        return $this-&gt;getElement('Search results navigation')-&gt;switchTab($name);
+    }
+}</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a page object file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aPageObjectFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a page object file "features/bootstrap/Page/ImagesSearchResults.php" contains:</span>
+</div>
+<pre class="argument">&lt;?php
+
+namespace Page;
+
+use SensioLabs\Behat\PageObjectExtension\PageObject\Page;
+
+class ImagesSearchResults extends Page
+{
+    /**
+     * @param string $keywords
+     *
+     * @return integer
+     */
+    public function countResults($keywords)
+    {
+        $xpath = sprintf(
+            '//img[@class=&quot;result-item&quot; and contains(translate(@alt,&quot;abcdefghijklmnopqrstuvwxyz&quot;,&quot;ABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;), &quot;%s&quot;)]',
+            strtoupper($keywords)
+        );
+        $results = $this-&gt;findAll('xpath', $xpath);
+
+        return count($results);
+    }
+}</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a page object file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aPageObjectFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a page object file "features/bootstrap/Page/Element/SearchResultsNavigation.php" contains:</span>
+</div>
+<pre class="argument">&lt;?php
+
+namespace Page\Element;
+
+use Behat\Mink\Exception\ElementNotFoundException;
+use SensioLabs\Behat\PageObjectExtension\PageObject\Element;
+use SensioLabs\Behat\PageObjectExtension\PageObject\Page;
+
+class SearchResultsNavigation extends Element
+{
+    /**
+     * @var array $selector
+     */
+    protected $selector = array('xpath' =&gt; '//div[@class=&quot;tabs&quot;]');
+
+    /**
+     * @param string $name
+     *
+     * @return Page
+     */
+    public function switchTab($name)
+    {
+        $tab = $this-&gt;find('xpath', sprintf('//a[contains(., &quot;%s&quot;)]', $name));
+
+        if (!$tab) {
+            throw new ElementNotFoundException($this-&gt;getDriver(), 'tab', 'name', $name);
+        }
+
+        $tab-&gt;click();
+
+        return $this-&gt;getPage($name.' search results');
+    }
+}</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a page object file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aPageObjectFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a feature file "features/search.feature" contains:</span>
+</div>
+<pre class="argument">Feature: Search
+  In order to find lolcats
+  As a Cat Lover
+  I want to search the internetz
+
+  Scenario: Searching for lolcats
+    Given I visited the homepage
+     When I search for &quot;lolcats&quot;
+     Then I should see a list of &quot;lolcat&quot; websites
+
+  Scenario: Searching for lolcat images
+    Given I visited the homepage
+      And I search for &quot;lolcats&quot;
+     When I change the tab to &quot;Images&quot;
+     Then I should see a list of &quot;lolcat&quot; images</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a feature file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aFeatureFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I run behat</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @When /^I run behat$/
+     */
+    public function iRunBehat()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">it should pass with:</span>
+</div>
+<pre class="argument">...
+
+2 scenarios (2 passed)
+7 steps (7 passed)</pre>
+<div class="snippet"><pre>    /**
+     * @Then /^it should pass with:$/
+     */
+    public function itShouldPassWith(PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+</ol>
+</div>
+<div class="scenario">
+<h3>
+<span class="keyword">Scenario: </span>
+<span class="title">Using a factory with FQCN to create page objects</span>
+<span class="path">/var/work/vendor/sensiolabs/behat-page-object-extension/features/using_page_objects_with_a_factory.feature:240</span>
+</h3>
+<ol>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">a behat configuration:</span>
+</div>
+<pre class="argument">default:
+  suites:
+    default:
+      contexts: [SearchContext]
+  extensions:
+    SensioLabs\Behat\PageObjectExtension: ~
+    Behat\MinkExtension:
+      goutte: ~
+      base_url: http://localhost:8000</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a behat configuration:$/
+     */
+    public function aBehatConfiguration(PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a context file "features/bootstrap/SearchContext.php" contains:</span>
+</div>
+<pre class="argument">&lt;?php
+
+use SensioLabs\Behat\PageObjectExtension\Context\PageObjectContext;
+use Page\Homepage;
+use Page\WebSearchResults;
+use Page\ImagesSearchResults;
+
+class SearchContext extends PageObjectContext
+{
+    /**
+     * @Given /^I visited the homepage$/
+     */
+    public function iVisitedTheHomepage()
+    {
+        $this-&gt;getPage('Page\\Homepage')-&gt;open();
+    }
+
+    /**
+     * @When /^I search for &quot;(?P&lt;keywords&gt;[^&quot;]*)&quot;$/
+     */
+    public function iSearchFor($keywords)
+    {
+        $this-&gt;getPage('Page\\Homepage')-&gt;search($keywords);
+    }
+
+    /**
+     * @When /^I change the tab to &quot;(?P&lt;tab&gt;[^&quot;]*)&quot;$/
+     */
+    public function iChangeTheTabTo($tab)
+    {
+        $this-&gt;getPage('Page\\WebSearchResults')-&gt;switchTab($tab);
+    }
+
+    /**
+     * @Then /^I should see a list of &quot;(?P&lt;keywords&gt;[^&quot;]*)&quot; websites$/
+     */
+    public function iShouldSeeAListOfWebsites($keywords)
+    {
+        $resultCount = $this-&gt;getPage('Page\\WebSearchResults')-&gt;countResults($keywords);
+
+        if ($resultCount &lt; 1) {
+            throw new \LogicException('Expected at least one search result');
+        }
+    }
+
+    /**
+     * @Then /^I should see a list of &quot;(?P&lt;keywords&gt;[^&quot;]*)&quot; images$/
+     */
+    public function iShouldSeeAListOfImages($keywords)
+    {
+        $resultCount = $this-&gt;getPage('Page\\ImagesSearchResults')-&gt;countResults($keywords);
+
+        if ($resultCount &lt; 1) {
+            throw new \LogicException('Expected at least one search result');
+        }
+    }
+}</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a context file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aContextFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a page object file "features/bootstrap/Page/Homepage.php" contains:</span>
+</div>
+<pre class="argument">&lt;?php
+
+namespace Page;
+
+use SensioLabs\Behat\PageObjectExtension\PageObject\Page;
+use Page\WebSearchResults;
+
+class Homepage extends Page
+{
+    /**
+     * @var string
+     */
+    protected $path = '/';
+
+    /**
+     * @var array $elements
+     */
+    protected $elements = array(
+        'Search form' =&gt; array('css' =&gt; 'form[name=&quot;search&quot;]')
+    );
+
+    /**
+     * @param string $keywords
+     *
+     * @return Page
+     */
+    public function search($keywords)
+    {
+        $element = $this-&gt;getElement('Search form');
+        $element-&gt;fillField('query', $keywords);
+        $element-&gt;pressButton('Search');
+
+        return $this-&gt;getPage('Page\\WebSearchResults');
+    }
+}</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a page object file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aPageObjectFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a page object file "features/bootstrap/Page/WebSearchResults.php" contains:</span>
+</div>
+<pre class="argument">&lt;?php
+
+namespace Page;
+
+use SensioLabs\Behat\PageObjectExtension\PageObject\Page;
+use Page\Element\SearchResultsNavigation;
+
+class WebSearchResults extends Page
+{
+    /**
+     * @param string $keywords
+     *
+     * @return integer
+     */
+    public function countResults($keywords)
+    {
+        $xpath = sprintf(
+            '//h3[contains(translate(.,&quot;abcdefghijklmnopqrstuvwxyz&quot;,&quot;ABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;), &quot;%s&quot;) and @class=&quot;result-item&quot;]/a',
+            strtoupper($keywords)
+        );
+        $results = $this-&gt;findAll('xpath', $xpath);
+
+        return count($results);
+    }
+
+    /**
+     * @param string $name
+     *
+     * @return Page
+     */
+    public function switchTab($name)
+    {
+        return $this-&gt;getElement('Page\\Element\\SearchResultsNavigation')-&gt;switchTab($name);
+    }
+}</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a page object file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aPageObjectFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a page object file "features/bootstrap/Page/ImagesSearchResults.php" contains:</span>
+</div>
+<pre class="argument">&lt;?php
+
+namespace Page;
+
+use SensioLabs\Behat\PageObjectExtension\PageObject\Page;
+
+class ImagesSearchResults extends Page
+{
+    /**
+     * @param string $keywords
+     *
+     * @return integer
+     */
+    public function countResults($keywords)
+    {
+        $xpath = sprintf(
+            '//img[@class=&quot;result-item&quot; and contains(translate(@alt,&quot;abcdefghijklmnopqrstuvwxyz&quot;,&quot;ABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;), &quot;%s&quot;)]',
+            strtoupper($keywords)
+        );
+        $results = $this-&gt;findAll('xpath', $xpath);
+
+        return count($results);
+    }
+}</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a page object file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aPageObjectFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a page object file "features/bootstrap/Page/Element/SearchResultsNavigation.php" contains:</span>
+</div>
+<pre class="argument">&lt;?php
+
+namespace Page\Element;
+
+use Behat\Mink\Exception\ElementNotFoundException;
+use SensioLabs\Behat\PageObjectExtension\PageObject\Element;
+use SensioLabs\Behat\PageObjectExtension\PageObject\Page;
+
+class SearchResultsNavigation extends Element
+{
+    /**
+     * @var array $selector
+     */
+    protected $selector = array('xpath' =&gt; '//div[@class=&quot;tabs&quot;]');
+
+    /**
+     * @param string $name
+     *
+     * @return Page
+     */
+    public function switchTab($name)
+    {
+        $tab = $this-&gt;find('xpath', sprintf('//a[contains(., &quot;%s&quot;)]', $name));
+
+        if (!$tab) {
+            throw new ElementNotFoundException($this-&gt;getDriver(), 'tab', 'name', $name);
+        }
+
+        $tab-&gt;click();
+
+        return $this-&gt;getPage($name.' search results');
+    }
+}</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a page object file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aPageObjectFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a feature file "features/search.feature" contains:</span>
+</div>
+<pre class="argument">Feature: Search
+  In order to find lolcats
+  As a Cat Lover
+  I want to search the internetz
+
+  Scenario: Searching for lolcats
+    Given I visited the homepage
+     When I search for &quot;lolcats&quot;
+     Then I should see a list of &quot;lolcat&quot; websites
+
+  Scenario: Searching for lolcat images
+    Given I visited the homepage
+      And I search for &quot;lolcats&quot;
+     When I change the tab to &quot;Images&quot;
+     Then I should see a list of &quot;lolcat&quot; images</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a feature file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aFeatureFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I run behat</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @When /^I run behat$/
+     */
+    public function iRunBehat()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">it should pass with:</span>
+</div>
+<pre class="argument">...
+
+2 scenarios (2 passed)
+7 steps (7 passed)</pre>
+<div class="snippet"><pre>    /**
+     * @Then /^it should pass with:$/
+     */
+    public function itShouldPassWith(PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+</ol>
+</div>
+<div class="scenario">
+<h3>
+<span class="keyword">Scenario: </span>
+<span class="title">Using a factory to create elements with simplified selectors</span>
+<span class="path">/var/work/vendor/sensiolabs/behat-page-object-extension/features/using_page_objects_with_a_factory.feature:479</span>
+</h3>
+<ol>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I configured the page object extension</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Given /^I configured the page object extension$/
+     */
+    public function iConfiguredThePageObjectExtension()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a context file "features/bootstrap/SearchContext.php" contains:</span>
+</div>
+<pre class="argument">&lt;?php
+
+use SensioLabs\Behat\PageObjectExtension\Context\PageObjectContext;
+
+class SearchContext extends PageObjectContext
+{
+    /**
+     * @Given /^I visited the homepage$/
+     */
+    public function iVisitedTheHomepage()
+    {
+        $this-&gt;getPage('Homepage')-&gt;open();
+    }
+
+    /**
+     * @When /^I should not see the &quot;(?P&lt;tab&gt;[^&quot;]*)&quot; tab$/
+     */
+    public function iShouldSeeNotTheTab($tab)
+    {
+        if ($this-&gt;getElement('Search results navigation')-&gt;hasTab($tab)) {
+            throw new \LogicException(sprintf('%s tab is present on the page', $tab));
+        }
+    }
+}</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a context file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aContextFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a page object file "features/bootstrap/Page/Homepage.php" contains:</span>
+</div>
+<pre class="argument">&lt;?php
+
+namespace Page;
+
+use SensioLabs\Behat\PageObjectExtension\PageObject\Page;
+
+class Homepage extends Page
+{
+    /**
+     * @var string
+     */
+    protected $path = '/';
+}</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a page object file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aPageObjectFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a page object file "features/bootstrap/Page/Element/SearchResultsNavigation.php" contains:</span>
+</div>
+<pre class="argument">&lt;?php
+
+namespace Page\Element;
+
+use Behat\Mink\Exception\ElementNotFoundException;
+use SensioLabs\Behat\PageObjectExtension\PageObject\Element;
+use SensioLabs\Behat\PageObjectExtension\PageObject\Page;
+
+class SearchResultsNavigation extends Element
+{
+    /**
+     * @var string
+     */
+    protected $selector = 'div.tabs';
+
+    /**
+     * @return boolean
+     */
+    public function hasTab($name)
+    {
+        return $this-&gt;hasLink($name);
+    }
+}</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a page object file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aPageObjectFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a feature file "features/search.feature" contains:</span>
+</div>
+<pre class="argument">Feature: Search
+  In order to find lolcats
+  As a Cat Lover
+  I want to search the internetz
+
+  Scenario: Searching for lolcats
+    Given I visited the homepage
+     Then I should not see the &quot;Images&quot; tab</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a feature file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aFeatureFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I run behat</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @When /^I run behat$/
+     */
+    public function iRunBehat()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">it should pass</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Then /^it should pass$/
+     */
+    public function itShouldPass()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+</ol>
+</div>
+<div class="scenario">
+<h3>
+<span class="keyword">Scenario: </span>
+<span class="title">Using a factory to create inline elements with simplified selectors</span>
+<span class="path">/var/work/vendor/sensiolabs/behat-page-object-extension/features/using_page_objects_with_a_factory.feature:565</span>
+</h3>
+<ol>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I configured the page object extension</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Given /^I configured the page object extension$/
+     */
+    public function iConfiguredThePageObjectExtension()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a context file "features/bootstrap/SearchContext.php" contains:</span>
+</div>
+<pre class="argument">&lt;?php
+
+use SensioLabs\Behat\PageObjectExtension\Context\PageObjectContext;
+
+class SearchContext extends PageObjectContext
+{
+    /**
+     * @Given /^I visited the homepage$/
+     */
+    public function iVisitedTheHomepage()
+    {
+        $this-&gt;getPage('Homepage')-&gt;open();
+    }
+
+    /**
+     * @When /^I should see the search box$/
+     */
+    public function iShouldSeeTheSearchBox()
+    {
+        if (!$this-&gt;getPage('Homepage')-&gt;hasSearchBox()) {
+            throw new \LogicException('Could not find the search box');
+        }
+    }
+}</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a context file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aContextFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a page object file "features/bootstrap/Page/Homepage.php" contains:</span>
+</div>
+<pre class="argument">&lt;?php
+
+namespace Page;
+
+use SensioLabs\Behat\PageObjectExtension\PageObject\Page;
+
+class Homepage extends Page
+{
+    /**
+     * @var string
+     */
+    protected $path = '/';
+
+    /**
+     * @var array
+     */
+    protected $elements = array(
+        'Search box' =&gt; 'input[name=&quot;Search&quot;]'
+    );
+
+    /**
+     * @return boolean
+     */
+    public function hasSearchBox()
+    {
+        return $this-&gt;hasElement('Search box');
+    }
+}</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a page object file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aPageObjectFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a feature file "features/search.feature" contains:</span>
+</div>
+<pre class="argument">Feature: Search
+  In order to find lolcats
+  As a Cat Lover
+  I want to search the internetz
+
+  Scenario: Searching for lolcats
+    Given I visited the homepage
+     Then I should see the search box</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a feature file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aFeatureFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I run behat</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @When /^I run behat$/
+     */
+    public function iRunBehat()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">it should pass</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Then /^it should pass$/
+     */
+    public function itShouldPass()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+</ol>
+</div>
+<div class="scenario">
+<h3>
+<span class="keyword">Scenario: </span>
+<span class="title">Configuring the page object factory</span>
+<span class="path">/var/work/vendor/sensiolabs/behat-page-object-extension/features/using_page_objects_with_a_factory.feature:639</span>
+</h3>
+<ol>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">a behat configuration:</span>
+</div>
+<pre class="argument">default:
+  suites:
+    default:
+      contexts: [SearchContext]
+  extensions:
+    SensioLabs\Behat\PageObjectExtension:
+      factory:
+        page_parameters:
+          base_url: http://localhost:8000
+    Behat\MinkExtension:
+      goutte: ~
+      base_url: http://some.other.host</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a behat configuration:$/
+     */
+    public function aBehatConfiguration(PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a context file "features/bootstrap/SearchContext.php" contains:</span>
+</div>
+<pre class="argument">&lt;?php
+
+use Behat\Behat\Context\Context;
+use SensioLabs\Behat\PageObjectExtension\Context\PageObjectContext;
+
+class SearchContext extends PageObjectContext
+{
+    /**
+     * @Given /^I visited the homepage$/
+     */
+    public function iVisitedTheHomepage()
+    {
+        $this-&gt;getPage('Homepage')-&gt;open();
+    }
+
+    /**
+     * @Then /^I should be able to search$/
+     */
+    public function iShouldBeAbleToSearch()
+    {
+        if (!$this-&gt;getPage('Homepage')-&gt;hasSearchForm()) {
+            throw new \LogicException('Could not find the search form');
+        }
+    }
+}</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a context file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aContextFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a page object file "features/bootstrap/Page/Homepage.php" contains:</span>
+</div>
+<pre class="argument">&lt;?php
+
+namespace Page;
+
+use SensioLabs\Behat\PageObjectExtension\PageObject\Page;
+
+class Homepage extends Page
+{
+    /**
+     * @var string $path
+     */
+    protected $path = '/';
+
+    /**
+     * @var array $elements
+     */
+    protected $elements = array(
+        'Search form' =&gt; array('css' =&gt; 'form[name=&quot;search&quot;]')
+    );
+
+    /**
+     * @return boolean
+     */
+    public function hasSearchForm()
+    {
+        return $this-&gt;hasElement('Search form');
+    }
+}</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a page object file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aPageObjectFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a feature file "features/search.feature" contains:</span>
+</div>
+<pre class="argument">Feature: Search
+  In order to find lolcats
+  As a Cat Lover
+  I want to search the internetz
+
+  Scenario: Searching for lolcats
+    Given I visited the homepage
+     Then I should be able to search</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a feature file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aFeatureFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I run behat</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @When /^I run behat$/
+     */
+    public function iRunBehat()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">it should pass</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Then /^it should pass$/
+     */
+    public function itShouldPass()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+</ol>
+</div>
+</div>
+<div class="feature">
+<h2>
+<span class="keyword">Feature: </span>
+<span class="title">Verifying if a page is open</span>
+</h2>
+<p>
+In order to avoid endless debugging nights<br />
+As a Developer<br />
+I need to check if a page is open<br />
+</p>
+
+<div class="scenario">
+<h3>
+<span class="keyword">Scenario: </span>
+<span class="title">Verifying if a page is open (without parameters)</span>
+<span class="path">/var/work/vendor/sensiolabs/behat-page-object-extension/features/verifying_if_a_page_is_open.feature:6</span>
+</h3>
+<ol>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I configured the page object extension</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Given /^I configured the page object extension$/
+     */
+    public function iConfiguredThePageObjectExtension()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a context file "features/bootstrap/SearchContext.php" contains:</span>
+</div>
+<pre class="argument">&lt;?php
+
+use SensioLabs\Behat\PageObjectExtension\Context\PageObjectContext;
+
+class SearchContext extends PageObjectContext
+{
+    /**
+     * @Given /^I visited the news list$/
+     */
+    public function iVisitedTheNewsList()
+    {
+        $this-&gt;getPage('News list')-&gt;open();
+    }
+
+    /**
+     * @When /^I should see a list of recent news articles$/
+     */
+    public function iShouldSeeListOfRecentNewsArticles()
+    {
+        $isNewsListOpen = $this-&gt;getPage('News list')-&gt;isOpen();
+
+        if (!$isNewsListOpen) {
+            throw new \LogicException('Expected the news list page to be open');
+        }
+    }
+}</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a context file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aContextFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a page object file "features/bootstrap/Page/NewsList.php" contains:</span>
+</div>
+<pre class="argument">&lt;?php
+
+namespace Page;
+
+use SensioLabs\Behat\PageObjectExtension\PageObject\Page;
+
+class NewsList extends Page
+{
+    /**
+     * @var string $path
+     */
+    protected $path = '/news';
+
+    protected function verifyResponse()
+    {
+        // no exception
+    }
+
+    protected function verifyPage()
+    {
+        // no exception
+    }
+
+    protected function verifyUrl(array $urlParameters = array())
+    {
+        // no exception
+    }
+}</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a page object file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aPageObjectFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a feature file "features/news.feature" contains:</span>
+</div>
+<pre class="argument">Feature: Viewing the news list
+  In order to find news I might be interested in
+  As a Visitor
+  I want to view a list of news
+
+  Scenario: Viewing recent news articles
+    Given I visited the news list
+     Then I should see a list of recent news articles</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a feature file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aFeatureFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I run behat</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @When /^I run behat$/
+     */
+    public function iRunBehat()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">it should pass with:</span>
+</div>
+<pre class="argument">..
+
+1 scenario (1 passed)
+2 steps (2 passed)</pre>
+<div class="snippet"><pre>    /**
+     * @Then /^it should pass with:$/
+     */
+    public function itShouldPassWith(PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+</ol>
+</div>
+<div class="scenario">
+<h3>
+<span class="keyword">Scenario: </span>
+<span class="title">Verifying if a page is open (with an url)</span>
+<span class="path">/var/work/vendor/sensiolabs/behat-page-object-extension/features/verifying_if_a_page_is_open.feature:88</span>
+</h3>
+<ol>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I configured the page object extension</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Given /^I configured the page object extension$/
+     */
+    public function iConfiguredThePageObjectExtension()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a context file "features/bootstrap/SearchContext.php" contains:</span>
+</div>
+<pre class="argument">&lt;?php
+
+use SensioLabs\Behat\PageObjectExtension\Context\PageObjectContext;
+
+class SearchContext extends PageObjectContext
+{
+    /**
+     * @Given /^I visited a news page$/
+     */
+    public function iVisitedNewsPage()
+    {
+        // opening a wrong page
+        $this-&gt;getPage('News')-&gt;open(array('slug' =&gt; 'page-object-extension-2.0-released'));
+    }
+
+    /**
+     * @When /^I should see the news article$/
+     */
+    public function isShouldSeeTheNewsArticle()
+    {
+        $isNewsOpen = $this-&gt;getPage('News')-&gt;isOpen(array('behat-3-released'));
+
+        if (!$isNewsOpen) {
+            throw new \LogicException('Expected the news page to be open');
+        }
+    }
+}</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a context file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aContextFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a page object file "features/bootstrap/Page/News.php" contains:</span>
+</div>
+<pre class="argument">&lt;?php
+
+namespace Page;
+
+use SensioLabs\Behat\PageObjectExtension\PageObject\Page;
+
+class News extends Page
+{
+    /**
+     * @var string $path
+     */
+    protected $path = '/news/{slug}';
+
+    protected function verifyUrl(array $urlParameters = array())
+    {
+        if ($this-&gt;getUrl($urlParameters) !== $this-&gt;getDriver()-&gt;getCurrentUrl()) {
+            throw new \LogicException(sprintf('The current url &quot;%s&quot; does not match the expected &quot;%s&quot;', $this-&gt;getDriver()-&gt;getCurrentUrl(), $this-&gt;getUrl($urlParameters)));
+        }
+    }
+}</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a page object file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aPageObjectFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a feature file "features/news.feature" contains:</span>
+</div>
+<pre class="argument">Feature: Reading news
+  In order to be up to date with recent events
+  As a Visitor
+  I want to read news articles
+
+  Scenario: Reading a news article
+    Given I visited a news page
+     Then I should see the news article</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a feature file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aFeatureFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I run behat</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @When /^I run behat$/
+     */
+    public function iRunBehat()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">it should fail with:</span>
+</div>
+<pre class="argument">.F</pre>
+<div class="snippet"><pre>    /**
+     * @Then /^it should fail with:$/
+     */
+    public function itShouldFailWith(PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+</ol>
+</div>
+<div class="scenario">
+<h3>
+<span class="keyword">Scenario: </span>
+<span class="title">Verifying if a page is open (with its contents)</span>
+<span class="path">/var/work/vendor/sensiolabs/behat-page-object-extension/features/verifying_if_a_page_is_open.feature:160</span>
+</h3>
+<ol>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I configured the page object extension</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Given /^I configured the page object extension$/
+     */
+    public function iConfiguredThePageObjectExtension()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a context file "features/bootstrap/SearchContext.php" contains:</span>
+</div>
+<pre class="argument">&lt;?php
+
+use SensioLabs\Behat\PageObjectExtension\Context\PageObjectContext;
+
+class SearchContext extends PageObjectContext
+{
+    /**
+     * @Given /^I visited the news list$/
+     */
+    public function iVisitedTheNewsList()
+    {
+        try {
+            $this-&gt;getPage('News list')-&gt;open();
+        } catch (\Exception $e) {
+            // Opening a page with open() would trigger verification if page is open.
+            // We want to verify the behavior is also trigger from isOpen().
+        }
+    }
+
+    /**
+     * @When /^I should see a list of recent news articles$/
+     */
+    public function iShouldSeeListOfRecentNewsArticles()
+    {
+        $isNewsListOpen = $this-&gt;getPage('News list')-&gt;isOpen();
+
+        if (!$isNewsListOpen) {
+            throw new \LogicException('Expected the news list page to be open');
+        }
+    }
+}</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a context file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aContextFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a page object file "features/bootstrap/Page/NewsList.php" contains:</span>
+</div>
+<pre class="argument">&lt;?php
+
+namespace Page;
+
+use SensioLabs\Behat\PageObjectExtension\PageObject\Page;
+
+class NewsList extends Page
+{
+    /**
+     * @var string $path
+     */
+    protected $path = '/news';
+
+    /**
+     * @return boolean
+     */
+    protected function verifyPage()
+    {
+        throw new \InvalidArgumentException('The page does not look like a news list page');
+    }
+}</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a page object file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aPageObjectFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a feature file "features/news.feature" contains:</span>
+</div>
+<pre class="argument">Feature: Viewing the news list
+  In order to find news I might be interested in
+  As a Visitor
+  I want to view a list of news
+
+  Scenario: Viewing recent news articles
+    Given I visited the news list
+     Then I should see a list of recent news articles</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a feature file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aFeatureFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I run behat</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @When /^I run behat$/
+     */
+    public function iRunBehat()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">it should fail with:</span>
+</div>
+<pre class="argument">.F</pre>
+<div class="snippet"><pre>    /**
+     * @Then /^it should fail with:$/
+     */
+    public function itShouldFailWith(PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+</ol>
+</div>
+<div class="scenario">
+<h3>
+<span class="keyword">Scenario: </span>
+<span class="title">Verifying if a page is open (with the response)</span>
+<span class="path">/var/work/vendor/sensiolabs/behat-page-object-extension/features/verifying_if_a_page_is_open.feature:237</span>
+</h3>
+<ol>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Given </span>
+<span class="text">I configured the page object extension</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @Given /^I configured the page object extension$/
+     */
+    public function iConfiguredThePageObjectExtension()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a context file "features/bootstrap/SearchContext.php" contains:</span>
+</div>
+<pre class="argument">&lt;?php
+
+use SensioLabs\Behat\PageObjectExtension\Context\PageObjectContext;
+
+class SearchContext extends PageObjectContext
+{
+    /**
+     * @Given /^I visited the news list$/
+     */
+    public function iVisitedTheNewsList()
+    {
+        try {
+            $this-&gt;getPage('News list')-&gt;open();
+        } catch (\Exception $e) {
+            // Opening a page with open() would trigger verification if response is valid.
+            // We want to verify the behavior is also trigger from isOpen().
+        }
+    }
+
+    /**
+     * @When /^I should see a list of recent news articles$/
+     */
+    public function iShouldSeeListOfRecentNewsArticles()
+    {
+        $isNewsListOpen = $this-&gt;getPage('News list')-&gt;isOpen();
+
+        if (!$isNewsListOpen) {
+            throw new \LogicException('Expected the news list page to be open');
+        }
+    }
+}</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a context file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aContextFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a page object file "features/bootstrap/Page/NewsList.php" contains:</span>
+</div>
+<pre class="argument">&lt;?php
+
+namespace Page;
+
+use SensioLabs\Behat\PageObjectExtension\PageObject\Page;
+
+class NewsList extends Page
+{
+    /**
+     * @var string $path
+     */
+    protected $path = '/news';
+
+    /**
+     * @return boolean
+     */
+    protected function verifyResponse()
+    {
+        throw new \InvalidArgumentException('The request to the News List did not return a successful response');
+    }
+}</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a page object file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aPageObjectFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">And </span>
+<span class="text">a feature file "features/news.feature" contains:</span>
+</div>
+<pre class="argument">Feature: Viewing the news list
+  In order to find news I might be interested in
+  As a Visitor
+  I want to view a list of news
+
+  Scenario: Viewing recent news articles
+    Given I visited the news list
+     Then I should see a list of recent news articles</pre>
+<div class="snippet"><pre>    /**
+     * @Given /^a feature file &quot;([^&quot;]*)&quot; contains:$/
+     */
+    public function aFeatureFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">When </span>
+<span class="text">I run behat</span>
+</div>
+<div class="snippet"><pre>    /**
+     * @When /^I run behat$/
+     */
+    public function iRunBehat()
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+<li class="undefined">
+<div class="step">
+<span class="keyword">Then </span>
+<span class="text">it should fail with:</span>
+</div>
+<pre class="argument">.F</pre>
+<div class="snippet"><pre>    /**
+     * @Then /^it should fail with:$/
+     */
+    public function itShouldFailWith(PyStringNode $string)
+    {
+        throw new PendingException();
+    }</pre></div>
+</li>
+</ol>
+</div>
+</div>
+<div class="summary failed">
+<div class="counters">
+<p class="scenarios">
+48 scenarios (<strong class="undefined">44 undefined</strong>, <strong class="failed">4 failed</strong>)
+</p>
+<p class="steps">
+261 steps (<strong class="skipped">42 skipped</strong>, <strong class="undefined">215 undefined</strong>, <strong class="failed">4 failed</strong>)
+</p>
+<p class="time">
+1m14.32s
+</p>
+</div>
+<div class="switchers">
+    <a href="javascript:void(0)" id="behat_show_all">[+] all</a>
+    <a href="javascript:void(0)" id="behat_hide_all">[-] all</a>
+</div>
+</div>
+
+    </div>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#behat .feature h2').click(function(){
+                $(this).parent().toggleClass('jq-toggle-opened');
+            }).parent().addClass('jq-toggle');
+
+            $('#behat .scenario h3').click(function(){
+                $(this).parent().toggleClass('jq-toggle-opened');
+            }).parent().addClass('jq-toggle');
+
+            $('#behat_show_all').click(function(){
+                $('#behat .feature').addClass('jq-toggle-opened');
+                $('#behat .scenario').addClass('jq-toggle-opened');
+            });
+
+            $('#behat_hide_all').click(function(){
+                $('#behat .feature').removeClass('jq-toggle-opened');
+                $('#behat .scenario').removeClass('jq-toggle-opened');
+            });
+
+            $('#behat .summary .counters .scenarios .passed')
+                .addClass('switcher')
+                .click(function(){
+                    var $scenario = $('.feature .scenario:not(:has(.failed, .pending))');
+                    var $feature  = $scenario.parent();
+
+                    $('#behat_hide_all').click();
+
+                    $scenario.addClass('jq-toggle-opened');
+                    $feature.addClass('jq-toggle-opened');
+                });
+
+            $('#behat .summary .counters .steps .passed')
+                .addClass('switcher')
+                .click(function(){
+                    var $scenario = $('.feature .scenario:has(.passed)');
+                    var $feature  = $scenario.parent();
+
+                    $('#behat_hide_all').click();
+
+                    $scenario.addClass('jq-toggle-opened');
+                    $feature.addClass('jq-toggle-opened');
+                });
+
+            $('#behat .summary .counters .failed')
+                .addClass('switcher')
+                .click(function(){
+                    var $scenario = $('.feature .scenario:has(.failed)');
+                    var $feature = $scenario.parent();
+
+                    $('#behat_hide_all').click();
+
+                    $scenario.addClass('jq-toggle-opened');
+                    $feature.addClass('jq-toggle-opened');
+                });
+
+            $('#behat .summary .counters .skipped')
+                .addClass('switcher')
+                .click(function(){
+                    var $scenario = $('.feature .scenario:has(.skipped)');
+                    var $feature = $scenario.parent();
+
+                    $('#behat_hide_all').click();
+
+                    $scenario.addClass('jq-toggle-opened');
+                    $feature.addClass('jq-toggle-opened');
+                });
+
+            $('#behat .summary .counters .pending')
+                .addClass('switcher')
+                .click(function(){
+                    var $scenario = $('.feature .scenario:has(.pending)');
+                    var $feature = $scenario.parent();
+
+                    $('#behat_hide_all').click();
+
+                    $scenario.addClass('jq-toggle-opened');
+                    $feature.addClass('jq-toggle-opened');
+                });
+        });
+    </script>
+</body>
+</html>

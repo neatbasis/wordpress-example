@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite errors="0" failures="0" skipped="28" name="Changing page object namespaces" tests="33" time="0.035483">
+    <testcase classname="Changing page object namespaces" name="Configuring both element and page namespaces" time="0.008911" assertions="7">
+    </testcase>
+    <testcase classname="Changing page object namespaces" name="Configuring page namespace only" time="0.009269" assertions="7">
+    </testcase>
+    <testcase classname="Changing page object namespaces" name="Configuring multiple namespaces" time="0.007796" assertions="7">
+    </testcase>
+    <testcase classname="Changing page object namespaces" name="Configuring multiple namespaces for page only" time="0.007239" assertions="7">
+    </testcase>
+</testsuite>

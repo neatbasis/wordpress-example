@@ -57,6 +57,20 @@ A methodic approach to build up poka-yoke countermeasures has been proposed by t
 
 This approach can be used to emphasize the technical aspect of finding effective solutions during brainstorming sessions.
 
+### List available test definitions
+
+```bash
+# in wordpress-example
+$ docker-compose -f docker-compose-test.yml up -d
+$ docker run --rm -t -v $(pwd):/var/work qualiboo/testing-behat --definitions=i
+```
+
+### Run tests
+
+```bash
+# run tests
+$ docker-compose -f docker-compose-test.yml run behat --profile=firefox
+```
 
 ### List running containers in this stack
 ```bash

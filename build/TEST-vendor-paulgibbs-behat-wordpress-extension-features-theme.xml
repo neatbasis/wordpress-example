@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite errors="0" failures="0" skipped="3" name="Managing themes" tests="19" time="0.005440">
+    <testcase classname="Managing themes" name="Activate a theme" time="0.004822" assertions="4">
+    </testcase>
+</testsuite>

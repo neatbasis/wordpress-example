@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite errors="0" failures="0" skipped="7" name="Managing plugins" tests="18" time="0.011314">
+    <testcase classname="Managing plugins" name="Activate a plugin" time="0.005210" assertions="4">
+    </testcase>
+    <testcase classname="Managing plugins" name="Deactivate a plugin" time="0.004910" assertions="5">
+    </testcase>
+</testsuite>

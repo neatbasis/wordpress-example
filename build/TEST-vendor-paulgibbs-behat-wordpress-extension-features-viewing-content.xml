@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite errors="0" failures="0" skipped="7" name="Viewing content" tests="28" time="0.016182">
+    <testcase classname="Viewing content" name="Deleting an existing post" time="0.005881" assertions="3">
+    </testcase>
+    <testcase classname="Viewing content" name="Viewing a single page" time="0.004149" assertions="4">
+    </testcase>
+    <testcase classname="Viewing content" name="Viewing an existing post" time="0.004514" assertions="4">
+    </testcase>
+</testsuite>
