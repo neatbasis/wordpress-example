@@ -30,14 +30,33 @@ services:
       WORDPRESS_DB_PASSWORD: wordpress
       WORDPRESS_DB_NAME: wordpress
   behat:
-    image: qualiboo/testing-behat
+    image: docksal/behat
     volumes:
-      - ./:/var/work
+      - ./behat:/src
     links:
         - hub
         - wordpress
+    ports:
+        - 8282:80
     environment:
       website: http://wordpress:8000
+    entrypoint: "php -S 0.0.0.0:80"
+  browser:
+    hostname: browser
+    # Pick/uncomment one
+    # Pin selenium image to an older version
+    # See https://github.com/docksal/docksal/issues/1096#issuecomment-543316840
+    image: ${SELENIUM_IMAGE:-selenium/standalone-chrome-debug:3.141.59}
+    #image: ${SELENIUM_IMAGE:-selenium/standalone-firefox-debug:3.141.59}
+    volumes:
+      # Workaround to avoid the browser crashing inside a docker container
+      # See https://github.com/SeleniumHQ/docker-selenium#quick-start
+      - /dev/shm:/dev/shm
+    # VNC port for debugging
+    # Host: <your-docker-host>:5900 (e.g, localhost:5900, 192.168.64.100:5900)
+    # Password: secret
+    ports:
+      - 5901:5900
   hub:
     image: qualiboo/testing-hub
     ports:

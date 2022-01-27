@@ -6,10 +6,23 @@
 - git
 - Wordpress
 
+# Prerequisites
+
+1. [docker](https://docs.docker.com/get-docker/)
+2. [docker-compose](https://docs.docker.com/compose/install/)
+3. [composer](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-composer-on-ubuntu-20-04)
+
 # Setup
 
 1. Clone the repo ```git clone git@github.com:neatbasis/wordpress-example.git```
 2. Start the stack ```cd wordpress-example;docker-compose up -d```
+3. Open your browser at [http://localhost:8000/](http://localhost:8000/) to continue with Wordpress configuration
+
+# Development Setup
+
+1. Clone the repo ```git clone git@github.com:neatbasis/wordpress-example.git```
+2. Start the stack ```cd wordpress-example;docker-compose up -d```
+2. Install dependencies ```composer install```
 3. Open your browser at [http://localhost:8000/](http://localhost:8000/) to continue with Wordpress configuration
 
 # Usage:
@@ -72,14 +85,14 @@ $ composer install
 ```bash
 # in wordpress-example
 $ docker-compose -f docker-compose-test.yml up -d
-$ docker run --rm -t -v $(pwd):/var/work qualiboo/testing-behat --definitions=i
+$ docker-compose -f docker-compose-test.yml exec behat behat --definitions=i
 ```
 
 ### Run tests
 
 ```bash
 # run tests
-$ docker-compose -f docker-compose-test.yml run behat --profile=firefox
+$ docker-compose -f docker-compose-test.yml exec behat behat
 ```
 
 ### List running containers in this stack
@@ -120,7 +133,9 @@ wordpress:
     - db
   image: wordpress:latest
   volumes:
-    - wordpress_data:/var/www/html
+    - ./wordpress_data:/var/www/html
+    - ./themes/devel:/var/www/html/wp-content/themes/devel-theme
+    - ./themes/example-sage:/var/www/html/wp-content/themes/example-sage
     - ./themes/bootstrap5-wordpress-theme:/var/www/html/wp-content/themes/bootstrap5-wordpress-theme
 
 ```
