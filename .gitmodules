@@ -1,3 +1,6 @@
 [submodule "themes/bootstrap5-wordpress-theme"]
 	path = themes/bootstrap5-wordpress-theme
 	url = git@github.com:tex0gen/bootstrap5-wordpress-theme.git
+[submodule "testing-behat"]
+	path = testing-behat
+	url = git@github.com:qualiboo/testing-behat.git

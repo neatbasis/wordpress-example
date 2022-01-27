@@ -18,11 +18,11 @@
 # Clone this repo
 git clone git@github.com:neatbasis/wordpress-example.git
 
-# Init and fetch submodules
-git submodule update --init --recursive
-
 # Change directory
 cd wordpress-example
+
+# Init and fetch submodules
+git submodule update --init --recursive
 
 # Start detached
 docker-compose up -d
@@ -59,6 +59,13 @@ A methodic approach to build up poka-yoke countermeasures has been proposed by t
 - Management of mistakes before satisfying the need
 
 This approach can be used to emphasize the technical aspect of finding effective solutions during brainstorming sessions.
+
+### Install testing environment
+
+```bash
+# in wordpress-example
+$ composer install
+```
 
 ### List available test definitions
 
