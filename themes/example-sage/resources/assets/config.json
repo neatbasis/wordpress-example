@@ -9,7 +9,7 @@
     ]
   },
   "publicPath": "/app/themes/ote-sage",
-  "devUrl": "http://ote-sage.test",
+  "devUrl": "http://localhost:8000",
   "proxyUrl": "http://localhost:3000",
   "cacheBusting": "[name]_[hash:8]",
   "watch": [
