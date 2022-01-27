@@ -1,7 +1,6 @@
 <?php
-
 namespace Example;
-
+require __DIR__ . '/../../../vendor/autoload.php';
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
